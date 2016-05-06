@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/shape_corner_5dp_solid_white"
+    android:orientation="vertical" android:layout_width="258dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:padding="@dimen/dimens_16dp"
+        android:id="@+id/tv_dialog_type_two_message"
+        android:layout_marginTop="34dp"
+        android:layout_gravity="center"
+        android:text=""
+        style="@style/tv_common_16sp" />
+
+<LinearLayout
+    android:layout_marginBottom="@dimen/dimens_16dp"
+    android:layout_marginTop="52sp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btn_dialog_type_two_cancel"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="43dp"
+        android:text="取消"
+        style="@style/btn_red" />
+    <Button
+        android:id="@+id/btn_dialog_type_two_confirm"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="43dp"
+        android:text="确定"
+        style="@style/btn_blue" />
+
+</LinearLayout>
+
+</LinearLayout>

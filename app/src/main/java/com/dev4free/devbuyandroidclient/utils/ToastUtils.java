@@ -2,7 +2,7 @@ package com.dev4free.devbuyandroidclient.utils;
 
 import android.widget.Toast;
 
-import wujiepay.com.application.MyApplication;
+import com.dev4free.devbuyandroidclient.application.MyApplication;
 
 /**
  * Created by syd on 2015/12/16.

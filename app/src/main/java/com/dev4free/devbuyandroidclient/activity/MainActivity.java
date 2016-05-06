@@ -2,15 +2,22 @@ package com.dev4free.devbuyandroidclient.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.dev4free.devbuyandroidclient.R;
+import com.dev4free.devbuyandroidclient.activity.main4.LoginActivity;
+import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main1;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main2;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main3;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main4;
+import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
+
+import cn.smssdk.SMSSDK;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -19,13 +26,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     FragmentTransaction transaction;
     RadioButton rb_main1;
     RadioGroup rg_main;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mContext = this;
+        SMSSDK.initSDK(this, "122be24f9ce3b", "ef2ee7086fdc48602a34478acfc3fb7a");
         initViews();
 
         rb_main1.setChecked(true);
@@ -61,7 +70,16 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             //个人中心
             case R.id.rb_main4:
 
-                changeFragment(new Fragment_main4());
+            //没有登录则需要先登录
+                if (SharedPreferenceUtils.getDefaultSharedPreferences().getString("login","no").equals("yes")) {
+                    changeFragment(new Fragment_main4());
+                    ConstantsUser.username = SharedPreferenceUtils.getDefaultSharedPreferences().getString("username","");
+                } else {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    startActivity(intent);
+                }
+
+
 
                 break;
         }

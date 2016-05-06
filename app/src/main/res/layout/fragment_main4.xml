@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -8,5 +10,192 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
     </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+            <LinearLayout
+                android:layout_height="90dp"
+                style="@style/ll_height45dp_nomargin_padding">
+
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/my_avator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_main4_username"
+                    style="@style/tv_common_16sp"
+                    android:layout_marginLeft="@dimen/dimens_16dp"
+                    android:text="店小二"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:drawableRight="@mipmap/my_right_arror_big"
+                    />
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                style="@style/ll_height45dp_nomargin_padding"
+                >
+
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:gravity="left"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:drawableLeft="@mipmap/my_order"
+                    android:text="我的订单"
+                    style="@style/tv_common_16sp" />
+
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:text="全部订单"
+                    android:drawableRight="@mipmap/my_right_arror_small"
+                    style="@style/tv_common_16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/tv_common_line" />
+
+            <LinearLayout
+                android:layout_height="90dp"
+                android:layout_marginTop="0dp"
+                style="@style/ll_height45dp_nomargin_padding">
+
+                <TextView
+                    android:drawableTop="@mipmap/my_order_wait_fukuan"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="代付款"
+                    style="@style/tv_common_16sp" />
+
+
+                <TextView
+                    android:drawableTop="@mipmap/my_order_wait_fahuo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="代发货"
+                    style="@style/tv_common_16sp" />
+
+
+                <TextView
+                    android:drawableTop="@mipmap/my_order_wait_shouhuo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="待收货"
+                    style="@style/tv_common_16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/ll_height45dp_nomargin_padding">
+
+                <TextView
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:drawableLeft="@mipmap/my_wallet"
+                    android:drawableRight="@mipmap/my_right_arror_small"
+                    android:text="钱包"
+                    style="@style/tv_common_16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_height45dp_nomargin_padding">
+                <TextView
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:drawableLeft="@mipmap/my_custom_service"
+                    android:drawableRight="@mipmap/my_right_arror_small"
+                    android:text="客服热线"
+                    style="@style/tv_common_16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_main4_modify_password"
+                style="@style/ll_height45dp_nomargin_padding">
+                <TextView
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:drawableLeft="@mipmap/my_modify_password"
+                    android:drawableRight="@mipmap/my_right_arror_small"
+                    android:text="修改密码"
+                    style="@style/tv_common_16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_height45dp_nomargin_padding">
+                <TextView
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:drawableLeft="@mipmap/my_advice_feedback"
+                    android:drawableRight="@mipmap/my_right_arror_small"
+                    android:text="意见反馈"
+                    style="@style/tv_common_16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/ll_height45dp_nomargin_padding">
+                <TextView
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:drawableLeft="@mipmap/my_about_us"
+                    android:drawableRight="@mipmap/my_right_arror_small"
+                    android:text="关于我们"
+                    style="@style/tv_common_16sp" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/ll_main4_exit"
+                style="@style/ll_height45dp_nomargin_padding">
+                <TextView
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:drawableLeft="@mipmap/my_exit"
+                    android:drawableRight="@mipmap/my_right_arror_small"
+                    android:text="安全退出"
+                    style="@style/tv_common_16sp" />
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

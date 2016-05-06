@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl_accountmanage_gender"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<LinearLayout
+    android:id="@+id/ll_accountmanage_man"
+    android:gravity="center"
+   style="@style/ll_height45dp_cornor5dp_margin_nopadding">
+    <TextView
+        android:text="男"
+        style="@style/tv_common_16sp" />
+</LinearLayout>
+
+
+
+        <LinearLayout
+
+            android:layout_marginTop="6dp"
+    android:id="@+id/ll_accountmanage_woman"
+android:gravity="center"
+   style="@style/ll_height45dp_cornor5dp_margin_nopadding">
+    <TextView
+        android:text="女"
+        style="@style/tv_common_16sp" />
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="@dimen/dimens_16dp"
+            android:id="@+id/ll_accountmanage_cancelgender"
+            android:gravity="center"
+            style="@style/ll_height45dp_cornor5dp_margin_nopadding">
+            <TextView
+                android:textColor="#fa162a"
+                android:text="取消"
+                style="@style/tv_common_16sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

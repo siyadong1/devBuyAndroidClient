@@ -1,3 +1,44 @@
 <resources>
+
+    <string name="server_error">连接服务器异常！</string>
     <string name="app_name">DevBuyAndroidClient</string>
+
+    <string name="json_parse_error">Json解析异常！</string>
+
+    <string name="register_number_error">请输入正确的手机号码!</string>
+    <string name="register_msgcode_error">请输入正确的验证码！</string>
+    <string name="register_password_error">密码至少为6位！</string>
+    <string name="register_password_confirm_error">确认密码至少为6位！</string>
+    <string name="register_password_different">两次密码不一致！</string>
+    <string name="register_obtain_msg_success">获取短信验证码成功！</string>
+    <string name="register_obtain_msg_fail">请检查手机号码是否可用！</string>
+    <string name="register_verify_msg_success">短信校验成功！</string>
+
+
+
+    <string name="login_username_error">请输入正确的用户名!</string>
+    <string name="login_password_error">请输入正确的密码!</string>
+
+
+
+
+    <string name="modifypassword_old_empty">请输入正确的旧密码！</string>
+    <string name="modifypassword_new_empty">请输入大于等于6位的新密码！</string>
+    <string name="modifypassword_confirm_empty">请输入大于等于6位的确认密码!</string>
+    <string name="modifypassword_password_different">新密码和确认密码不一致!</string>
+
+
+
+
+    <string name="forgetpassword_msgcode_error">请输入正确的验证码！</string>
+    <string name="forgetpassword_number_error">请输入正确的手机号码!</string>
+    <string name="forgetpassword_password_error">密码至少为6位！</string>
+    <string name="forgetpassword_password_confirm_error">确认密码至少为6位！</string>
+    <string name="forgetpassword_password_different">两次密码不一致！</string>
+
+
+
+    <string name="nick_empty">请输入昵称！</string>
+
+
 </resources>

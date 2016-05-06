@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+    <LinearLayout
+        style="@style/ll_height45dp_nomargin_padding">
+        
+    <TextView
+        android:gravity="left"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:text="昵称"
+        style="@style/tv_common_16sp" />
+
+
+        <EditText
+            android:id="@+id/et_nickname_nickname"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:hint="请输入昵称"
+           style="@style/et_common_style"/>
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/btn_nickname_confirm"
+        android:text="确定"
+        android:layout_marginTop="300dp"
+        style="@style/btn_red" />
+
+</LinearLayout>

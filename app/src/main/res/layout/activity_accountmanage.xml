@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_accountmanage"
+    android:background="@color/background"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_accountmanage_avatar"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:drawableRight="@mipmap/my_right_arror_small"
+            android:text="头像"
+            style="@style/tv_common_16sp"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_accountmanage_nickname"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:gravity="left"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="昵称"
+            style="@style/tv_common_16sp"/>
+        <TextView
+            android:id="@+id/tv_accountmanage_nickname"
+            android:drawablePadding="@dimen/dimens_16dp"
+            android:text=""
+            android:drawableRight="@mipmap/my_right_arror_small"
+            style="@style/tv_common_16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_accountmanage_gender"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:gravity="left"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="性别"
+            style="@style/tv_common_16sp"/>
+        <TextView
+            android:id="@+id/tv_accountmanage_gender"
+            android:drawablePadding="@dimen/dimens_16dp"
+            android:text=""
+            android:drawableRight="@mipmap/my_right_arror_small"
+            style="@style/tv_common_16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_accountmanage_address"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:drawableRight="@mipmap/my_right_arror_small"
+            android:text="地址管理"
+            style="@style/tv_common_16sp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
