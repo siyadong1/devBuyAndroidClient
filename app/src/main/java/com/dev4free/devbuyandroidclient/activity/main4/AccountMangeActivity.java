@@ -2,11 +2,14 @@ package com.dev4free.devbuyandroidclient.activity.main4;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -21,7 +24,10 @@ import com.dev4free.devbuyandroidclient.constants.ConstantsUrl;
 import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.HttpUtils;
+import com.dev4free.devbuyandroidclient.utils.LogUtil;
+import com.dev4free.devbuyandroidclient.utils.PhtotUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
+import com.dev4free.devbuyandroidclient.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +35,7 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,12 +55,17 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
     LinearLayout llWoman ;
     LinearLayout llCancelGender ;
     RelativeLayout rl_accountmanage_gender ;
+    File file = new File(Environment.getExternalStorageDirectory(), "temp_iden.png");
+
+
+
 
     @ViewInject(R.id.tv_accountmanage_gender)
     TextView tv_accountmanage_gender;
     @ViewInject(R.id.tv_accountmanage_nickname)
     TextView tv_accountmanage_nickname;
-
+    @ViewInject(R.id.iv_accountmanage_photo)
+    ImageView iv_accountmanage_photo;
 
 
     @Override
@@ -63,6 +75,7 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
         x.view().inject(this);
         mContext = this;
         progressDialogUtils = new ProgressDialogUtils(mContext);
+
 
     }
 
@@ -190,12 +203,14 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
             case R.id.ll_accountmanage_takephoto:
                 mPopupWindow.dismiss();
 
+                PhtotUtils.takePhoto(this,file,1);
 
                 break;
 
             //从相册中选择
             case R.id.ll_accountmanage_pickphoto:
                 mPopupWindow.dismiss();
+                PhtotUtils.pickPhoto(this,2);
                 break;
             //头像取消
             case R.id.ll_accountmanage_cancelphoto:
@@ -285,5 +300,52 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 处理接收到的图片
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+
+            // 对拍照之后的图片进行压缩。
+            final Bitmap bitmap = PhtotUtils.compressBySize(file.getPath(), 500, 500);
+            LogUtil.e("takephot="+ file.getPath());
+            //显示图片
+            iv_accountmanage_photo.setImageBitmap(bitmap);
+        } else if (requestCode == 2 && resultCode == RESULT_OK) {
+
+            String picturePath = PhtotUtils.handleUri(this,data);
+            final Bitmap bitmap = PhtotUtils.compressBySize(picturePath, 500, 500);
+            //显示图片
+            iv_accountmanage_photo.setImageBitmap(bitmap);
+            LogUtil.e("pickphoto="+ picturePath);
+        } else {
+            ToastUtils.showToast("拍照失败...");
+        }
+
+    }
+
+
+
+
+
 
 }
