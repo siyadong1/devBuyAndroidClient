@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <com.dev4free.devbuyandroidclient.view.ListViewCustom
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimens_16dp"
+            android:paddingTop="@dimen/dimens_16dp"
+            android:layout_marginRight="@dimen/dimens_16dp"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:id="@+id/lv_manageaddress"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.dev4free.devbuyandroidclient.view.ListViewCustom>
+
+        <Button
+            android:id="@+id/btn_manageaddress_add"
+            android:layout_marginBottom="@dimen/dimens_16dp"
+            android:layout_marginTop="48dp"
+            android:text="新增地址"
+            style="@style/btn_red" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+</LinearLayout>

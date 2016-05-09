@@ -55,7 +55,7 @@ public class CityAdapter extends BaseAdapter {
         if (convertView == null) {
 
             mViewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.view_city_item, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_city_item, null);
             x.view().inject(mViewHolder, convertView);
             convertView.setTag(mViewHolder);
 

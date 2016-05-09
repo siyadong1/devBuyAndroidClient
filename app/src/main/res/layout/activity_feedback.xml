@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+
+    <LinearLayout
+        android:paddingTop="@dimen/dimens_16dp"
+        android:layout_height="248dp"
+        style="@style/ll_height45dp_nomargin_padding">
+
+        <EditText
+            android:id="@+id/et_feedback_content"
+            android:gravity="left"
+            android:layout_marginLeft="0dp"
+            android:layout_gravity="left"
+            android:text="      尊敬的老板尊敬的老板尊敬的老板尊敬的老板尊敬的老板尊敬的老板尊敬的老板尊敬的老板"
+            style="@style/et_common_style" />
+
+        </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_feedback_submit"
+        android:layout_marginTop="162dp"
+        android:text="提交"
+        style="@style/btn_red" />
+
+</LinearLayout>

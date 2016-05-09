@@ -75,6 +75,7 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
         x.view().inject(this);
         mContext = this;
         progressDialogUtils = new ProgressDialogUtils(mContext);
+        initTitle("账号管理");
 
 
     }
@@ -130,6 +131,8 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
 
           //修改地址
           case R.id.ll_accountmanage_address:
+              intent = new Intent(mContext,AddressManageActivity.class);
+              startActivity(intent);
               break;
 
 

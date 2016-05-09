@@ -70,6 +70,31 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+    <style name="ll_height45dp_nomargin_nopadding">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+
+
+
+    <style name="ll_height45dp_margin_padding">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
 
 
 

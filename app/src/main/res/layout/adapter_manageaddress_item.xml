@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_marginLeft="@dimen/dimens_16dp"
+    android:layout_marginRight="@dimen/dimens_16dp"
+    android:layout_marginTop="@dimen/dimens_16dp"
+    android:paddingLeft="@dimen/dimens_16dp"
+    android:paddingRight="@dimen/dimens_16dp"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/tv_manageaddress_name"
+        android:layout_marginTop="@dimen/dimens_16dp"
+        android:text="收货人：斯亚东"
+        style="@style/tv_common_16sp" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dimens_16dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_manageaddress_phone"
+        android:text="15228935891"
+        style="@style/tv_common_16sp" />
+
+
+    <TextView
+        android:id="@+id/tv_manageaddress_address"
+        android:gravity="left"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_below="@id/tv_manageaddress_name"
+        android:text="收货地址：浙江省杭州市滨江区莲花乡池水沟子8存8组1户五栋99楼1号2号房间上铺"
+        style="@style/tv_common_16sp" />
+
+    <TextView
+        android:layout_marginBottom="37dp"
+        android:id="@+id/tv_manageaddress_defaultaddress"
+        android:layout_marginLeft="25dp"
+        android:drawablePadding="2dp"
+        android:drawableLeft="@mipmap/address_no_defaultaddress"
+        android:layout_marginTop="@dimen/dimens_16dp"
+        android:layout_below="@id/tv_manageaddress_address"
+        android:text="默认地址"
+        style="@style/tv_common_16sp" />
+
+
+    <TextView
+        android:layout_marginBottom="37dp"
+        android:layout_alignBaseline="@id/tv_manageaddress_defaultaddress"
+        android:layout_alignParentRight="true"
+        android:drawableLeft="@mipmap/address_delete"
+        android:drawablePadding="2dp"
+        android:id="@+id/tv_manageaddress_deleteaddress"
+        android:text="删除"
+        style="@style/tv_common_16sp" />
+
+    <TextView
+        android:layout_marginBottom="37dp"
+        android:layout_alignBaseline="@id/tv_manageaddress_defaultaddress"
+       android:layout_toLeftOf="@id/tv_manageaddress_deleteaddress"
+        android:drawableLeft="@mipmap/address_edit"
+        android:drawablePadding="2dp"
+        android:layout_marginRight="@dimen/dimens_16dp"
+        android:id="@+id/tv_manageaddress_editaddress"
+        android:text="编辑"
+        style="@style/tv_common_16sp" />
+</RelativeLayout>

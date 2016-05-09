@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+
+    <RelativeLayout
+        style="@style/ll_height45dp_nomargin_padding">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:text="关于DevBuy"
+           style="@style/tv_common_16sp" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        style="@style/ll_height45dp_nomargin_padding">
+
+        <TextView
+            android:gravity="left"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_marginBottom="@dimen/dimens_16dp"
+            android:text="      DevBuy是一款DevBuy是一款DevBuy是一款DevBuy是一款DevBuy是一款DevBuy是一款DevBuy是一款．．．"
+            style="@style/tv_common_16sp" />
+
+    </LinearLayout>
+</LinearLayout>

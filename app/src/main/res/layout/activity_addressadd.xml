@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+    <LinearLayout
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:text="收货人"
+            style="@style/tv_common_16sp"/>
+        <EditText
+            android:id="@+id/et_addressadd_consignee"
+            android:hint="请输入收货人姓名"
+            style="@style/et_common_style" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:text="联系电话"
+            style="@style/tv_common_16sp"/>
+        <EditText
+            android:id="@+id/et_addressadd_phone"
+            android:hint="请输入收货人联系电话"
+            style="@style/et_common_style" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:text="所在省"
+            style="@style/tv_common_16sp"/>
+        <EditText
+            android:id="@+id/et_addressadd_province"
+            android:hint="收货人所在省份"
+            style="@style/et_common_style" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:text="所在市"
+            style="@style/tv_common_16sp"/>
+        <EditText
+            android:id="@+id/et_addressadd_city"
+            android:hint="收货人所在城市"
+            style="@style/et_common_style" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_gravity="left"
+            android:text="详细地址"
+            style="@style/tv_common_16sp"/>
+        <EditText
+            android:layout_marginBottom="@dimen/dimens_45dp"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:id="@+id/et_addressadd_detail"
+            android:hint="收货人所在城市"
+            style="@style/et_common_style" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_addressadd_confirm"
+        android:layout_marginTop="55dp"
+        android:text="确定"
+       style="@style/btn_red"/>
+
+</LinearLayout>

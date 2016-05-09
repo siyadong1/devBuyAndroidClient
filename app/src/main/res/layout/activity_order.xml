@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+    <LinearLayout
+        android:background="#FF979797"
+        android:layout_marginTop="21dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_45dp">
+
+
+
+
+
+        <LinearLayout
+            android:background="#FF979797"
+            android:layout_marginTop="0dp"
+            android:layout_height="40dp"
+            style="@style/ll_height45dp_nomargin_nopadding">
+
+
+            <TextView
+                android:id="@+id/tv_order_title1"
+                android:layout_height="35dp"
+                android:textColor="@color/red"
+                android:text="全部"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                style="@style/tv_common_16sp" />
+
+            <TextView
+                android:id="@+id/tv_order_title2"
+                android:layout_height="40dp"
+                android:text="代付款"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                style="@style/tv_common_16sp" />
+            <TextView
+                android:id="@+id/tv_order_title3"
+                android:layout_height="40dp"
+                android:text="代发货"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                style="@style/tv_common_16sp" />
+            <TextView
+                android:id="@+id/tv_order_title4"
+                android:layout_height="40dp"
+                android:text="待收货"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                style="@style/tv_common_16sp" />
+
+
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:src="@mipmap/order_line"
+            android:id="@+id/iv_order_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

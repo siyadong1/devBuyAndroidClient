@@ -6,6 +6,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -41,16 +42,23 @@
 
         <activity android:name=".activity.BaseActivity"></activity>
         <activity android:name=".activity.main1.CityActivity"></activity>
+
+
+
         <activity android:name=".activity.main4.LoginActivity"></activity>
         <activity android:name=".activity.main4.RegisterActivity"></activity>
         <activity android:name=".activity.main4.ForgetPasswordActivity"></activity>
         <activity android:name=".activity.main4.ModifyPasswordActivity"></activity>
         <activity android:name=".activity.main4.AccountMangeActivity"></activity>
         <activity android:name=".activity.main4.NickNameActivity"></activity>
+        <activity android:name=".activity.main4.AddressManageActivity"></activity>
+        <activity android:name=".activity.main4.AddressAddActivity"></activity>
+        <activity android:name=".activity.main4.AboutUsActivity"></activity>
+        <activity android:name=".activity.main4.FeedBackActivity"></activity>
+        <activity android:name=".activity.main4.OrderActivity"></activity>
 
 
 
-        <activity android:name=".activity.main1.CityActivity"></activity>
 
 
 

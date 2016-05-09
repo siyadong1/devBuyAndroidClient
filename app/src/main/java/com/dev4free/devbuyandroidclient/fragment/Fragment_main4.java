@@ -2,18 +2,24 @@ package com.dev4free.devbuyandroidclient.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.dev4free.devbuyandroidclient.Interface.AlertInterface;
 import com.dev4free.devbuyandroidclient.R;
+import com.dev4free.devbuyandroidclient.activity.main4.AboutUsActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.AccountMangeActivity;
+import com.dev4free.devbuyandroidclient.activity.main4.FeedBackActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.LoginActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.ModifyPasswordActivity;
+import com.dev4free.devbuyandroidclient.activity.main4.OrderActivity;
+import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 
 import org.xutils.view.annotation.Event;
@@ -29,12 +35,10 @@ public class Fragment_main4 extends BaseFragment{
     private Context mContext;
 
 
-    @ViewInject(R.id.ll_main4_modify_password)
-    LinearLayout ll_main4_modify_password;
-    @ViewInject(R.id.ll_main4_exit)
-    LinearLayout ll_main4_exit;
+
     @ViewInject(R.id.tv_main4_username)
     TextView tv_main4_username;
+
 
     @Nullable
     @Override
@@ -53,19 +57,54 @@ public class Fragment_main4 extends BaseFragment{
     }
 
 
+    /**
+     * 处理点击事件
+     * @param view
+     */
 
-
-    @Event(value = {R.id.ll_main4_exit,R.id.ll_main4_modify_password,R.id.tv_main4_username})
+    @Event(value = {R.id.ll_main4_exit,R.id.ll_main4_modify_password,R.id.tv_main4_username,R.id.ll_main4_feedback,
+                    R.id.ll_main4_aboutus,R.id.ll_main4_custom_srevice,R.id.ll_main4_order})
     private void clickEvent(View view) {
         Intent intent;
         switch (view.getId()) {
 
-            //退出登录
-            case R.id.ll_main4_exit:
-                intent = new Intent(mContext, LoginActivity.class);
+
+            //修改密码
+            case R.id.ll_main4_order:
+
+                intent = new Intent(mContext, OrderActivity.class);
                 startActivity(intent);
-                SharedPreferenceUtils.getDefaultSharedPreferences().edit().putString("login","no").commit();
+
                 break;
+
+
+
+            //客服热线
+            case R.id.ll_main4_custom_srevice:
+
+
+
+                AlertDialogUtils.showAlertDialog(mContext, "您将拨打110？", "取消", "拨打", new AlertInterface() {
+                    @Override
+                    public void confirm(AlertDialog alertDialog) {
+
+
+                        //意图：想干什么事
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_CALL);
+                        //url:统一资源定位符
+                        //uri:统一资源标示符（更广）
+                        intent.setData(Uri.parse("tel:" + "15228935891"));
+                        //开启系统拨号器
+                        startActivity(intent);
+
+                    }
+                });
+
+
+
+                break;
+
 
             //修改密码
             case R.id.ll_main4_modify_password:
@@ -82,6 +121,31 @@ public class Fragment_main4 extends BaseFragment{
                 startActivity(intent);
 
                 break;
+
+            //意见反馈
+            case R.id.ll_main4_feedback:
+
+                intent = new Intent(mContext, FeedBackActivity.class);
+                startActivity(intent);
+
+                break;
+
+            //关于我们
+            case R.id.ll_main4_aboutus:
+
+                intent = new Intent(mContext, AboutUsActivity.class);
+                startActivity(intent);
+
+                break;
+
+
+            //安全退出
+            case R.id.ll_main4_exit:
+                intent = new Intent(mContext, LoginActivity.class);
+                startActivity(intent);
+                SharedPreferenceUtils.getDefaultSharedPreferences().edit().putString("login","no").commit();
+                break;
+
 
         }
 
