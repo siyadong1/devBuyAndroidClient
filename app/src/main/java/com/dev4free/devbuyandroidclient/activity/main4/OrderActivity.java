@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Created by syd on 2016/5/9.
  */
-public class OrderActivity extends FragmentActivity {
+public class OrderActivity extends FragmentActivity implements ViewPager.OnPageChangeListener{
 
     private ProgressDialogUtils progressDialogUtils;
     private Context mContext;
@@ -43,6 +43,16 @@ public class OrderActivity extends FragmentActivity {
 
     @ViewInject(R.id.iv_order_line)
     ImageView iv_order_line;
+
+    @ViewInject(R.id.tv_order_title1)
+    TextView tv_order_title1;
+    @ViewInject(R.id.tv_order_title2)
+    TextView tv_order_title2;
+    @ViewInject(R.id.tv_order_title3)
+    TextView tv_order_title3;
+    @ViewInject(R.id.tv_order_title4)
+    TextView tv_order_title4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +73,7 @@ public class OrderActivity extends FragmentActivity {
         vp_order.setAdapter(ordrePagerAdapter);
         //指示器
         transIndicator(-1,0);
+        vp_order.addOnPageChangeListener(this);
     }
 
 
@@ -78,10 +89,20 @@ public class OrderActivity extends FragmentActivity {
         int offset = (MeasureUtils.getDisplayMetrics().widthPixels / 4 - bmpW) / 2;// 计算偏移量
 
         if (fromIndex == -1) {
+
             Animation animation = new TranslateAnimation(0, offset, 0, 0);
             animation.setFillAfter(true);
             animation.setDuration(300);
             iv_order_line.startAnimation(animation);
+
+//            Matrix matrix = new Matrix();
+//            matrix.postTranslate(offset, 0);
+//            matrix.setScale(1,1);
+//            iv_order_line.setScaleType(ImageView.ScaleType.MATRIX);
+//            iv_order_line.setImageMatrix(matrix);
+
+
+
             currentIndex = 0;
         } else {
             Animation animation = new TranslateAnimation(fromIndex*MeasureUtils.getDisplayMetrics().widthPixels / 4 + offset, toIndex*MeasureUtils.getDisplayMetrics().widthPixels /4 + offset, 0, 0);
@@ -110,6 +131,70 @@ public class OrderActivity extends FragmentActivity {
 
 
 
+    /**
+     * 切换fragment
+     */
+    private void changeFragment(int nextIndex) {
+
+        vp_order.setCurrentItem(nextIndex);
+        transIndicator(currentIndex,nextIndex);
+        changeColor(nextIndex);
+    }
+
+
+    /**
+     * 选中项为红色其余为普通色
+     * @param nextIndex
+     */
+    private void changeColor(int nextIndex) {
+
+        switch (nextIndex) {
+
+            case 0:
+
+            tv_order_title1.setTextColor(getResources().getColor(R.color.red));
+            tv_order_title2.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title3.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title4.setTextColor(getResources().getColor(R.color.text_464646));
+
+                break;
+
+            case 1:
+
+            tv_order_title1.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title2.setTextColor(getResources().getColor(R.color.red));
+            tv_order_title3.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title4.setTextColor(getResources().getColor(R.color.text_464646));
+
+                break;
+
+            case 2:
+
+            tv_order_title1.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title2.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title3.setTextColor(getResources().getColor(R.color.red));
+            tv_order_title4.setTextColor(getResources().getColor(R.color.text_464646));
+
+                break;
+
+            case 3:
+
+            tv_order_title1.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title2.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title3.setTextColor(getResources().getColor(R.color.text_464646));
+            tv_order_title4.setTextColor(getResources().getColor(R.color.red));
+
+                break;
+
+        }
+
+    }
+
+
+    /**
+     * 点击事件
+     * @param view
+     */
 
     @Event(value = {R.id.tv_order_title1,R.id.tv_order_title2,R.id.tv_order_title3,R.id.tv_order_title4})
     private void clickEvent(View view) {
@@ -149,21 +234,38 @@ public class OrderActivity extends FragmentActivity {
                 if (currentIndex != 3) {
                     changeFragment(3);
                     currentIndex = 3;
+
                 }
 
                 break;
 
+
         }
+
 
     }
 
-    /**
-     * 切换fragment
-     */
-    private void changeFragment(int nextIndex) {
 
-        vp_order.setCurrentItem(nextIndex);
-        transIndicator(currentIndex,nextIndex);
+
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+
+        transIndicator(currentIndex,position);
+        changeColor(position);
+        currentIndex = position;
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+
 
     }
 }

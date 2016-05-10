@@ -85,6 +85,7 @@
                 style="@style/ll_height45dp_nomargin_padding">
 
                 <TextView
+                    android:id="@+id/ll_main4_order_daifukuan"
                     android:drawableTop="@mipmap/my_order_wait_fukuan"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -93,6 +94,7 @@
 
 
                 <TextView
+                    android:id="@+id/ll_main4_order_daifahuo"
                     android:drawableTop="@mipmap/my_order_wait_fahuo"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -101,6 +103,7 @@
 
 
                 <TextView
+                    android:id="@+id/ll_main4_order_daishouhuo"
                     android:drawableTop="@mipmap/my_order_wait_shouhuo"
                     android:layout_width="0dp"
                     android:layout_weight="1"

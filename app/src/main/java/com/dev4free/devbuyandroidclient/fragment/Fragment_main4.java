@@ -63,10 +63,36 @@ public class Fragment_main4 extends BaseFragment{
      */
 
     @Event(value = {R.id.ll_main4_exit,R.id.ll_main4_modify_password,R.id.tv_main4_username,R.id.ll_main4_feedback,
-                    R.id.ll_main4_aboutus,R.id.ll_main4_custom_srevice,R.id.ll_main4_order})
+                    R.id.ll_main4_aboutus,R.id.ll_main4_custom_srevice,R.id.ll_main4_order,R.id.ll_main4_order_daifukuan,
+                    R.id.ll_main4_order_daifahuo,R.id.ll_main4_order_daishouhuo})
     private void clickEvent(View view) {
         Intent intent;
         switch (view.getId()) {
+
+
+            //代付款
+            case R.id.ll_main4_order_daifukuan:
+
+                intent = new Intent(mContext,OrderActivity.class);
+                startActivity(intent);
+                break;
+
+
+            //代发货
+            case R.id.ll_main4_order_daifahuo:
+
+                intent = new Intent(mContext,OrderActivity.class);
+                startActivity(intent);
+                break;
+
+
+            //代收获
+            case R.id.ll_main4_order_daishouhuo:
+
+                intent = new Intent(mContext,OrderActivity.class);
+                startActivity(intent);
+                break;
+
 
 
             //修改密码

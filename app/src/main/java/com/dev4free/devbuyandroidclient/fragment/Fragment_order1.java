@@ -71,7 +71,7 @@ public class Fragment_order1 extends Fragment{
      */
     public void getAllOrders() {
 
-        for (int i = 0; i <4 ; i++) {
+        for (int i = 0; i <1 ; i++) {
 
             Goods goods = new Goods("小米4手机 小米4移动4G 5.0英寸/3GB内存 特别版 运行2GB内存 可选","34","35-128","小米手机旗舰店");
             goodsList.add(goods);

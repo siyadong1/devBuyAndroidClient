@@ -63,10 +63,6 @@
 
 
 
-
-
-
-
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"

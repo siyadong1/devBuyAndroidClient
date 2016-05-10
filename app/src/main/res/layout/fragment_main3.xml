@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent">
 
 
@@ -8,5 +11,54 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
     </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+
+
+
+
+
+
+    <ListView
+        android:divider="@color/background"
+        android:dividerHeight="@dimen/dimens_16dp"
+        android:layout_margin="@dimen/dimens_16dp"
+        android:id="@+id/lv_main3"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"></ListView>
+
+
+
+
+
+    <RelativeLayout
+        android:layout_below="@id/lv_main3"
+        style="@style/ll_height45dp_margin_padding">
+        <CheckBox
+            android:id="@+id/ck_main4_select_all"
+            android:text="全选"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_main3_settle"
+            android:layout_alignParentRight="true"
+            android:text="结算(3)"
+            style="@style/btn_red_small" />
+        <TextView
+            android:id="@+id/tv_main3_total_money"
+            android:layout_alignBaseline="@id/btn_main3_settle"
+            android:layout_toLeftOf="@id/btn_main3_settle"
+            android:textColor="@color/red"
+            android:text="￥90"
+            style="@style/tv_common_16sp"/>
+        <TextView
+            android:layout_toLeftOf="@id/tv_main3_total_money"
+            android:layout_alignBaseline="@id/tv_main3_total_money"
+            android:text="合计："
+            style="@style/tv_common_16sp" />
+    </RelativeLayout>
+
+
+
 
 </LinearLayout>

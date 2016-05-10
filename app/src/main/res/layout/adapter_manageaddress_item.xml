@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:paddingBottom="@dimen/dimens_16dp"
     android:layout_marginLeft="@dimen/dimens_16dp"
     android:layout_marginRight="@dimen/dimens_16dp"
     android:layout_marginTop="@dimen/dimens_16dp"
@@ -35,7 +36,6 @@
         style="@style/tv_common_16sp" />
 
     <TextView
-        android:layout_marginBottom="37dp"
         android:id="@+id/tv_manageaddress_defaultaddress"
         android:layout_marginLeft="25dp"
         android:drawablePadding="2dp"
@@ -47,7 +47,6 @@
 
 
     <TextView
-        android:layout_marginBottom="37dp"
         android:layout_alignBaseline="@id/tv_manageaddress_defaultaddress"
         android:layout_alignParentRight="true"
         android:drawableLeft="@mipmap/address_delete"
@@ -57,7 +56,6 @@
         style="@style/tv_common_16sp" />
 
     <TextView
-        android:layout_marginBottom="37dp"
         android:layout_alignBaseline="@id/tv_manageaddress_defaultaddress"
        android:layout_toLeftOf="@id/tv_manageaddress_deleteaddress"
         android:drawableLeft="@mipmap/address_edit"
