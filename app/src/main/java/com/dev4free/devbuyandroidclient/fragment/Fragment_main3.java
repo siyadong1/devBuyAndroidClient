@@ -1,6 +1,7 @@
 package com.dev4free.devbuyandroidclient.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,10 +11,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dev4free.devbuyandroidclient.R;
+import com.dev4free.devbuyandroidclient.activity.main3.OrderSubmitActivity;
 import com.dev4free.devbuyandroidclient.adapter.ShoppingCarAdapter;
 import com.dev4free.devbuyandroidclient.entity.Goods;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -80,4 +83,26 @@ public class Fragment_main3 extends BaseFragment{
 
 
     }
+
+
+
+    @Event(R.id.btn_main3_settle)
+    private void clickEvent(View view) {
+
+        Intent intent = null;
+
+        switch (view.getId()) {
+
+            case R.id.btn_main3_settle:
+
+                intent = new Intent(mContext, OrderSubmitActivity.class);
+                startActivity(intent);
+
+                break;
+
+        }
+
+
+    }
+
 }

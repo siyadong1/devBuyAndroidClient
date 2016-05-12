@@ -44,6 +44,12 @@
         <activity android:name=".activity.main1.CityActivity"></activity>
 
 
+        <activity android:name=".activity.main3.OrderSubmitActivity"></activity>
+        <activity android:name=".activity.main3.PaymentActivity"></activity>
+        <activity android:name=".activity.main3.PaymentSuccessActivity"></activity>
+
+
+
 
         <activity android:name=".activity.main4.LoginActivity"></activity>
         <activity android:name=".activity.main4.RegisterActivity"></activity>
