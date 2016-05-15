@@ -15,3 +15,9 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+
+#蒲公英
+#-libraryjars libs/pgyer_sdk_2.2.2.jar
+#-dontwarn com.pgyersdk.**
+#-keep class com.pgyersdk.** { *; }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.dev4free.devbuyandroidclient.Interface.AlertInterface;
 import com.dev4free.devbuyandroidclient.Interface.OnHttpPostListener;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.activity.BaseActivity;
@@ -35,7 +33,13 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -273,16 +277,11 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
                 try {
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
-                        AlertDialogUtils.showAlertDialog(mContext, "修改性别成功！", new AlertInterface() {
-                            @Override
-                            public void confirm(AlertDialog alertDialog) {
 
-                               ConstantsUser.gender = gender;
-                              tv_accountmanage_gender.setText(gender);
-                                alertDialog.dismiss();
 
-                            }
-                        });
+                        ConstantsUser.gender = gender;
+                        tv_accountmanage_gender.setText(gender);
+
                     } else {
                         AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
                     }
@@ -330,9 +329,30 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
 
             // 对拍照之后的图片进行压缩。
             final Bitmap bitmap = PhtotUtils.compressBySize(file.getPath(), 500, 500);
-            LogUtil.e("takephot="+ file.getPath());
+            LogUtil.e("takephoto="+ file.getPath());
             //显示图片
             iv_accountmanage_photo.setImageBitmap(bitmap);
+
+            Bitmap b = PhtotUtils.compressImage(bitmap);
+
+            ByteArrayOutputStream byos = new ByteArrayOutputStream();
+            b.compress(Bitmap.CompressFormat.JPEG,100,byos);
+
+            try {
+                FileOutputStream f = new FileOutputStream(file);
+                try {
+                    f.write(byos.toByteArray());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            uploadFile();
+
+
+
         } else if (requestCode == 2 && resultCode == RESULT_OK) {
 
             String picturePath = PhtotUtils.handleUri(this,data);
@@ -340,6 +360,29 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
             //显示图片
             iv_accountmanage_photo.setImageBitmap(bitmap);
             LogUtil.e("pickphoto="+ picturePath);
+
+            Bitmap b = PhtotUtils.compressImage(bitmap);
+
+            ByteArrayOutputStream byos = new ByteArrayOutputStream();
+            b.compress(Bitmap.CompressFormat.JPEG,100,byos);
+
+            try {
+                FileOutputStream f = new FileOutputStream(file);
+                try {
+                    f.write(byos.toByteArray());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            uploadFile();
+
+
+
+
+
         } else {
             ToastUtils.showToast("拍照失败...");
         }
@@ -347,8 +390,55 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
     }
 
 
+    /**
+     * 上传图片
+     */
+    private void uploadFile() {
+
+        progressDialogUtils.showProgress("正在上传头像...");
+
+        Map<String,String> map = new HashMap<String,String >();
+        Map<String,File>   mapFile = new HashMap<String,File>();
+        String username = ConstantsUser.username;
+
+        map.put("username",username);
+        mapFile.put("avatarpic",file);
+        HttpUtils.uploadFile(ConstantsUrl.modifyavatar, map,mapFile, new OnHttpPostListener() {
+            @Override
+            public void onSuccess(final JSONObject result) {
+                progressDialogUtils.dismissProgress();
+                try {
+                    if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
+
+                        ToastUtils.showToast("头像修改成功！");
+                        ConstantsUser.avatar = URLDecoder.decode(result.getString(ConstantsHttp.CONTENT),"UTF-8");
+                        finish();
+
+                    } else {
+                        AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_parse_error));
+                } catch (UnsupportedEncodingException e) {
+                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_url_parse_error));
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                progressDialogUtils.dismissProgress();
+                AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
+            }
+        });
 
 
+
+
+
+    }
 
 
 }

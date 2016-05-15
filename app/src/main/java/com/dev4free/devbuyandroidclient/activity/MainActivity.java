@@ -5,17 +5,33 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.dev4free.devbuyandroidclient.Interface.OnHttpPostListener;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.activity.main4.LoginActivity;
+import com.dev4free.devbuyandroidclient.constants.ConstantsHttp;
+import com.dev4free.devbuyandroidclient.constants.ConstantsUrl;
 import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main1;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main2;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main3;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main4;
+import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
+import com.dev4free.devbuyandroidclient.utils.HttpUtils;
+import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
+import com.pgyersdk.update.PgyUpdateManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.smssdk.SMSSDK;
 
@@ -24,10 +40,13 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     android.app.FragmentManager manager;
     FragmentTransaction transaction;
-    RadioButton rb_main1;
+    @ViewInject(R.id.rg_main)
     RadioGroup rg_main;
-    private Context mContext;
+    @ViewInject(R.id.rb_main1)
+    RadioButton rb_main1;
 
+    private ProgressDialogUtils progressDialogUtils;
+    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,18 +54,24 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         setContentView(R.layout.activity_main);
         mContext = this;
         SMSSDK.initSDK(this, "122be24f9ce3b", "ef2ee7086fdc48602a34478acfc3fb7a");
-        initViews();
-
+        x.view().inject(this);
+        progressDialogUtils = new ProgressDialogUtils(mContext);
         rb_main1.setChecked(true);
         rg_main.setOnCheckedChangeListener(this);
         manager = getFragmentManager();
         changeFragment(new Fragment_main1());
+
+        PgyUpdateManager.register(this);
+
+
+        ConstantsUser.username = SharedPreferenceUtils.getDefaultSharedPreferences().getString("username","");
+        if (!TextUtils.isEmpty(ConstantsUser.username)) {
+            getUserInfo();
+        }
+
     }
 
-    private void initViews() {
-        rb_main1 = (RadioButton) findViewById(R.id.rb_main1);
-        rg_main = (RadioGroup) findViewById(R.id.rg_main);
-    }
+
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -74,6 +99,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 if (SharedPreferenceUtils.getDefaultSharedPreferences().getString("login","no").equals("yes")) {
                     changeFragment(new Fragment_main4());
                     ConstantsUser.username = SharedPreferenceUtils.getDefaultSharedPreferences().getString("username","");
+
                 } else {
                     Intent intent = new Intent(mContext, LoginActivity.class);
                     startActivity(intent);
@@ -95,4 +121,54 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     }
 
+
+    /**
+     * 获取用户信息
+     * @return
+     */
+    public void getUserInfo() {
+
+
+        progressDialogUtils.showProgress();
+
+        Map<String,String> map = new HashMap<String,String >();
+        String username = ConstantsUser.username;
+
+        map.put("username",username);
+
+        HttpUtils.post(ConstantsUrl.findUserByName, map, new OnHttpPostListener() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                progressDialogUtils.dismissProgress();
+                try {
+                    if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
+
+
+                           JSONObject userInfo = result.getJSONObject(ConstantsHttp.CONTENT);
+                        ConstantsUser.username = userInfo.getString("username");
+                        ConstantsUser.avatar = userInfo.getString("avatar");
+                        ConstantsUser.gender = userInfo.getString("gender");
+                        ConstantsUser.nickname = userInfo.getString("nickname");
+
+                    } else {
+                        AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_parse_error));
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                progressDialogUtils.dismissProgress();
+                AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
+            }
+        });
+
+
+
+
+    }
 }

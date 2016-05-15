@@ -5,6 +5,8 @@
 
     <string name="json_parse_error">Json解析异常！</string>
 
+    <string name="json_url_parse_error">URL解析异常！</string>
+
     <string name="register_number_error">请输入正确的手机号码!</string>
     <string name="register_msgcode_error">请输入正确的验证码！</string>
     <string name="register_password_error">密码至少为6位！</string>

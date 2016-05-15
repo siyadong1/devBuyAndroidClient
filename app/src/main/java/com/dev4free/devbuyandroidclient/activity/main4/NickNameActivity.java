@@ -2,11 +2,9 @@ package com.dev4free.devbuyandroidclient.activity.main4;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 
-import com.dev4free.devbuyandroidclient.Interface.AlertInterface;
 import com.dev4free.devbuyandroidclient.Interface.OnHttpPostListener;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.activity.BaseActivity;
@@ -100,15 +98,9 @@ public class NickNameActivity extends BaseActivity {
                 try {
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
-                        AlertDialogUtils.showAlertDialog(mContext, "修改昵称成功！", new AlertInterface() {
-                            @Override
-                            public void confirm(AlertDialog alertDialog) {
+                        ConstantsUser.nickname = et_nickname_nickname.getText().toString().trim();
+                        finish();
 
-                                ConstantsUser.nickname = et_nickname_nickname.getText().toString().trim();
-                                finish();
-
-                            }
-                        });
                     } else {
                         AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
                     }

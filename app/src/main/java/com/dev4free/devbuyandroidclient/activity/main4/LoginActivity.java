@@ -22,6 +22,7 @@ import com.dev4free.devbuyandroidclient.utils.HttpUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 import com.dev4free.devbuyandroidclient.utils.ToastUtils;
+import com.pgyersdk.update.PgyUpdateManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,7 +69,6 @@ public class LoginActivity extends BaseActivity {
         progressDialogUtils = new ProgressDialogUtils(mContext);
 
         initView();
-
 
 
     }

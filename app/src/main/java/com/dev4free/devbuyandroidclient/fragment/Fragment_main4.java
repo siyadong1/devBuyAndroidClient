@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dev4free.devbuyandroidclient.Interface.AlertInterface;
@@ -19,9 +20,12 @@ import com.dev4free.devbuyandroidclient.activity.main4.FeedBackActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.LoginActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.ModifyPasswordActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.OrderActivity;
+import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 
+import org.xutils.common.util.DensityUtil;
+import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -34,11 +38,12 @@ public class Fragment_main4 extends BaseFragment{
 
     private Context mContext;
 
-
+    ImageOptions imageOptions;
 
     @ViewInject(R.id.tv_main4_username)
     TextView tv_main4_username;
-
+    @ViewInject(R.id.iv_main4_avatar)
+    ImageView iv_main4_avatar;
 
     @Nullable
     @Override
@@ -52,9 +57,25 @@ public class Fragment_main4 extends BaseFragment{
         view.findViewById(R.id.ll_title_back).setVisibility(View.GONE);
 
 
+        imageOptions = new ImageOptions.Builder()
+                .setSize(DensityUtil.dip2px(50), DensityUtil.dip2px(50))
+                // 如果ImageView的大小不是定义为wrap_content, 不要crop.
+                .setCrop(true) // 很多时候设置了合适的scaleType也不需要它.
+                .setRadius(DensityUtil.dip2px(50))
+                .setLoadingDrawableId(R.mipmap.my_avator)
+                .setFailureDrawableId(R.mipmap.my_avator)
+                .build();
+
+
+        if (ConstantsUser.username != null) {
+
+        }
+
         return view;
 
     }
+
+
 
 
     /**
@@ -62,9 +83,9 @@ public class Fragment_main4 extends BaseFragment{
      * @param view
      */
 
-    @Event(value = {R.id.ll_main4_exit,R.id.ll_main4_modify_password,R.id.tv_main4_username,R.id.ll_main4_feedback,
+    @Event(value = {R.id.ll_main4_exit,R.id.ll_main4_modify_password,R.id.ll_main4_feedback,
                     R.id.ll_main4_aboutus,R.id.ll_main4_custom_srevice,R.id.ll_main4_order,R.id.ll_main4_order_daifukuan,
-                    R.id.ll_main4_order_daifahuo,R.id.ll_main4_order_daishouhuo})
+                    R.id.ll_main4_order_daifahuo,R.id.ll_main4_order_daishouhuo,R.id.ll_main4_avatar})
     private void clickEvent(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -141,7 +162,7 @@ public class Fragment_main4 extends BaseFragment{
                 break;
 
             //账户管理
-            case R.id.tv_main4_username:
+            case R.id.ll_main4_avatar:
 
                 intent = new Intent(mContext, AccountMangeActivity.class);
                 startActivity(intent);
@@ -178,4 +199,11 @@ public class Fragment_main4 extends BaseFragment{
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        x.image().bind(iv_main4_avatar, ConstantsUser.avatar,imageOptions);
+
+    }
 }

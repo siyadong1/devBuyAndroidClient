@@ -8,6 +8,7 @@ public class ConstantsUser {
     public static String username;
     public static String nickname;
     public static String gender;
+    public static String avatar;
 
 
 

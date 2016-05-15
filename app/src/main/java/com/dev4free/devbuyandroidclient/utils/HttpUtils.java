@@ -7,6 +7,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -15,6 +16,12 @@ import java.util.Map;
 public class HttpUtils {
 
 
+    /**
+     * post请求
+     * @param url
+     * @param map
+     * @param onHttpPostListener
+     */
     public static void post(String url, Map<String,String> map, final OnHttpPostListener onHttpPostListener) {
 
 //        params.addBodyParameter("username",username);
@@ -73,6 +80,83 @@ public class HttpUtils {
 
 
     }
+
+
+    /**
+     * 上传文件
+     * @param url
+     * @param mapParameters
+     * @param onHttpPostListener
+     */
+    public static void uploadFile(String url, Map<String,String> mapParameters, Map<String,File> mapFiles,final OnHttpPostListener onHttpPostListener) {
+
+
+        // 加到url里的参数, http://xxxx/s?wd=xUtils
+        // params.addBodyParameter("username",username);
+        // params.addBodyParameter("password",password);
+        // 添加到请求body体的参数, 只有POST, PUT, PATCH, DELETE请求支持.
+        // params.addBodyParameter("wd", "xUtils");
+
+        // 使用multipart表单上传文件
+//        params.setMultipart(true);
+//        params.addBodyParameter(
+//                "file",
+//                new File("/sdcard/test.jpg"),
+//                null); // 如果文件没有扩展名, 最好设置contentType参数.
+//        try {
+//            params.addBodyParameter(
+//                    "file2",
+//                    new FileInputStream(new File("/sdcard/test2.jpg")),
+//                    "image/jpeg",
+//                    // 测试中文文件名
+//                    "你+& \" 好.jpg"); // InputStream参数获取不到文件名, 最好设置, 除非服务端不关心这个参数.
+//        } catch (FileNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+        RequestParams params = new RequestParams(url);
+        //设置传输文件
+        params.setMultipart(true);
+        //上传普通的参数
+        for (Map.Entry<String, String> entry : mapParameters.entrySet()) {
+            params.addBodyParameter(entry.getKey(),entry.getValue());
+        }
+        //上传文件
+        for (Map.Entry<String, File> entry : mapFiles.entrySet()) {
+
+            params.addBodyParameter(entry.getKey(),entry.getValue(),null);
+
+        }
+
+        LogUtil.e("httpPostSendData=" + mapParameters);
+        x.http().post(params, new Callback.CommonCallback<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                onHttpPostListener.onSuccess(result);
+                LogUtil.e("httpPostReceiveData=" + result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+//                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                onHttpPostListener.onError(ex,isOnCallback);
+                LogUtil.e("httpPostReceiveError=" + ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+//                Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+
+
+    }
+
+
+
 
 
 }

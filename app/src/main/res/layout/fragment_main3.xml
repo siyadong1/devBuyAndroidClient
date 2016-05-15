@@ -25,7 +25,7 @@
         android:layout_margin="@dimen/dimens_16dp"
         android:id="@+id/lv_main3"
         android:layout_width="match_parent"
-        android:layout_height="460dp"></ListView>
+        android:layout_height="400dp"></ListView>
 
 
 

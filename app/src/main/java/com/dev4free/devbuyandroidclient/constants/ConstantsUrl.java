@@ -5,8 +5,8 @@ package com.dev4free.devbuyandroidclient.constants;
  */
 public class ConstantsUrl {
 
-    public static final String HOST = "http://192.168.100.84:8080/";
-//    public static final String HOST = "http://www.dev4free.com/";
+//    public static final String HOST = "http://192.168.100.84:8080/";
+    public static final String HOST = "http://www.dev4free.com/";
     public static final String PATH = "devbuy/java/";
     public static final String SUFFIX = ".action";
 
@@ -55,5 +55,18 @@ public class ConstantsUrl {
     public static String modifygender = HOST + PATH + "modifygender" + SUFFIX;
 
 
+
+
+
+    /**
+     * 修改用户头像
+     */
+    public static String modifyavatar = HOST + PATH + "modifyavatar" + SUFFIX;
+
+
+    /**
+     * 查询用户信息
+     */
+    public static String findUserByName = HOST + PATH + "findUserByName" + SUFFIX;
 
 }

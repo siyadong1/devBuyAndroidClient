@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-
     <RelativeLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#FF3F454E">
@@ -71,6 +74,294 @@
 
 
     </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_main1_banner"
+                android:layout_width="match_parent"
+                android:layout_height="145dp">
+            </android.support.v4.view.ViewPager>
+
+            <TextView
+                android:layout_margin="@dimen/dimens_16dp"
+                android:textSize="18sp"
+                android:text="首页导航"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <com.dev4free.devbuyandroidclient.view.GridViewCustom
+                android:id="@+id/gv_main1_navigation"
+                android:numColumns="4"
+                android:verticalSpacing="5dp"
+                android:layout_marginLeft="@dimen/dimens_16dp"
+                android:layout_marginRight="@dimen/dimens_16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.dev4free.devbuyandroidclient.view.GridViewCustom>
+
+
+
+
+
+
+            <RelativeLayout
+                style="@style/ll_height45dp_nomargin_nopadding">
+                <TextView
+                    android:textColor="#FF73E905"
+                    android:layout_centerInParent="true"
+                    android:text="爱旅行"
+                    style="@style/tv_common_16sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginTop="2dp"
+                android:paddingLeft="@dimen/dimens_16dp"
+                android:paddingRight="@dimen/dimens_16dp"
+                android:background="@color/background"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@mipmap/home_content_1_1_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_1_2_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:paddingLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_1_2_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:paddingLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_1_2_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <RelativeLayout
+                style="@style/ll_height45dp_nomargin_nopadding">
+                <TextView
+                    android:textColor="#FF73E905"
+                    android:layout_centerInParent="true"
+                    android:text="爱音乐"
+                    style="@style/tv_common_16sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginTop="2dp"
+                android:paddingLeft="@dimen/dimens_16dp"
+                android:paddingRight="@dimen/dimens_16dp"
+                android:background="@color/background"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@mipmap/home_content_2_1_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_2_2_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:paddingLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_2_2_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:paddingLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_2_2_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <RelativeLayout
+                style="@style/ll_height45dp_nomargin_nopadding">
+                <TextView
+                    android:textColor="#FF73E905"
+                    android:layout_centerInParent="true"
+                    android:text="爱美食"
+                    style="@style/tv_common_16sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginTop="2dp"
+                android:paddingLeft="@dimen/dimens_16dp"
+                android:paddingRight="@dimen/dimens_16dp"
+                android:background="@color/background"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@mipmap/home_content_3_1_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_3_2_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:paddingLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_3_2_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:paddingLeft="5dp"
+                        android:layout_weight="1"
+                        android:src="@mipmap/home_content_3_2_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
 
 
 </LinearLayout>

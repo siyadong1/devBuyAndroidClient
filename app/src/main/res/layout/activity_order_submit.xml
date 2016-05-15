@@ -68,6 +68,7 @@
 
 
     <RelativeLayout
+        android:paddingBottom="@dimen/dimens_16dp"
         android:id="@+id/rl_ordersubmit_goods"
         android:layout_marginLeft="@dimen/dimens_16dp"
         android:layout_marginRight="@dimen/dimens_16dp"
@@ -116,7 +117,6 @@
 
         <TextView
             android:layout_marginTop="2dp"
-            android:layout_marginLeft="@dimen/dimens_16dp"
             android:layout_alignLeft="@id/tv_main3_description"
             android:textSize="18sp"
             android:textColor="@color/red"
@@ -127,7 +127,6 @@
 
 
         <TextView
-            android:layout_marginBottom="@dimen/dimens_16dp"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="@dimen/dimens_16dp"
             android:layout_toRightOf="@id/tv_main3_realprice"

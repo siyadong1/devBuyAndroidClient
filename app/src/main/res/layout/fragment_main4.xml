@@ -25,10 +25,12 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_main4_avatar"
                 android:layout_height="90dp"
                 style="@style/ll_height45dp_nomargin_padding">
 
                 <ImageView
+                    android:id="@+id/iv_main4_avatar"
                     android:layout_gravity="center_vertical"
                     android:src="@mipmap/my_avator"
                     android:layout_width="wrap_content"
