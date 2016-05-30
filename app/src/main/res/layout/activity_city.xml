@@ -10,8 +10,25 @@
 
 
 
-    <ListView
-        android:id="@+id/lv_city"
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.dev4free.devbuyandroidclient.view.PinnedHeaderListView
+        android:id="@+id/phlv_city"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent">
+
+    </com.dev4free.devbuyandroidclient.view.PinnedHeaderListView>
+
+    <com.dev4free.devbuyandroidclient.view.BladeView
+       android:layout_alignParentRight="true"
+        android:id="@+id/bv_city"
+        android:layout_width="30dp"
+        android:layout_height="match_parent">
+    </com.dev4free.devbuyandroidclient.view.BladeView>
+
+</RelativeLayout>
+
 </LinearLayout>

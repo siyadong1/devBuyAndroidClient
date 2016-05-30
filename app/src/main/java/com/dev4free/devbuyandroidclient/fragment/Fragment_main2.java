@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.adapter.Main2LeftAdapter;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
+import com.dev4free.devbuyandroidclient.view.BladeView;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -94,6 +95,7 @@ public class Fragment_main2 extends BaseFragment implements AdapterView.OnItemCl
         listDataLeft.add("水果");
         listDataLeft.add("零食");
 
+
         //adapter
         leftAdapter = new Main2LeftAdapter(mContext,listDataLeft);
         //bind
@@ -107,6 +109,9 @@ public class Fragment_main2 extends BaseFragment implements AdapterView.OnItemCl
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         ((TextView)view.findViewById(R.id.tv_main2_left)).setTextColor(getResources().getColor(R.color.red));
+
+
+
         if (leftIndex != position) {
             ((TextView)(((LinearLayout)parent.getChildAt(leftIndex)).findViewById(R.id.tv_main2_left))).setTextColor(Color.rgb(70,70,70));
             leftIndex = position;
