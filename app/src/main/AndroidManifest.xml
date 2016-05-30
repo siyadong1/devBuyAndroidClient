@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dev4free.devbuyandroidclient">
+
 
 
 
@@ -32,6 +35,7 @@
     <uses-permission android:name="android.permission.READ_LOGS" /> <!-- 获取logcat日志 -->
 
     <application
+        tools:replace="android:icon,theme"
         android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -63,6 +67,13 @@
 
         <activity android:name=".activity.BaseActivity"></activity>
         <activity android:name=".activity.main1.CityActivity"></activity>
+
+
+        <activity android:name=".activity.main2.GoodsDetail"></activity>
+        <activity android:name=".activity.main2.GoodsList"></activity>
+
+
+
 
 
         <activity android:name=".activity.main3.OrderSubmitActivity"></activity>

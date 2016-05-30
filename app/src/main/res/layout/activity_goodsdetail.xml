@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:layout_marginTop="@dimen/dimens_16dp"
+                android:src="@mipmap/detail_phone_grid_1_1_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:padding="@dimen/dimens_16dp"
+                android:layout_margin="@dimen/dimens_16dp"
+                android:layout_width="match_parent"
+                android:layout_height="195dp">
+
+                <TextView
+                    android:layout_gravity="left"
+                    android:gravity="left"
+                    android:text="小米4手机 小米4移动4G 5.0英寸/3GB内存 特别版运行2GB内存 可选"
+                    style="@style/tv_common_16sp" />
+
+                <TextView
+                    android:layout_marginTop="@dimen/dimens_16dp"
+                    android:textColor="@color/red"
+                    android:textSize="19sp"
+                    android:layout_gravity="left"
+                    android:gravity="left"
+                    android:text="￥ 34"
+                    style="@style/tv_common_16sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="#BDBDBD"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:text="价格   "
+                        style="@style/tv_common_16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_goodsdetail_price_old"
+                        android:textColor="#BDBDBD"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:text="￥35-128"
+                        style="@style/tv_common_16sp" />
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dimens_16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:text="快递费:"
+                        style="@style/tv_common_16sp"/>
+                    <TextView
+                        android:text="免费"
+                        style="@style/tv_common_16sp"/>
+                    <TextView
+                        android:layout_marginLeft="@dimen/dimens_45dp"
+                        android:text="月销216笔"
+                        style="@style/tv_common_16sp"/>
+                    <TextView
+                        android:layout_marginLeft="@dimen/dimens_16dp"
+                        android:text="浙江杭州"
+                        style="@style/tv_common_16sp"/>
+
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_goodsdeail_gotoshoppingpcar"
+                android:layout_marginTop="@dimen/dimens_45dp"
+                android:text="加入购物车"
+                style="@style/btn_red" />
+
+            <Button
+                android:layout_marginBottom="@dimen/dimens_45dp"
+                android:id="@+id/btn_goodsdeail_gotobuy"
+                android:layout_marginTop="@dimen/dimens_45dp"
+                android:text="立即购买"
+                style="@style/btn_red" />
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

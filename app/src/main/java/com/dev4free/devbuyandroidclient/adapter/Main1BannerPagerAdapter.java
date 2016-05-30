@@ -1,6 +1,7 @@
 package com.dev4free.devbuyandroidclient.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.dev4free.devbuyandroidclient.R;
+import com.dev4free.devbuyandroidclient.activity.main2.GoodsDetail;
 
 import java.util.List;
 
@@ -48,6 +50,15 @@ public class Main1BannerPagerAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.iv_fragment1_banner);
         imageView.setImageDrawable(bannerList.get(position%bannerList.size()));
         container.addView(view);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, GoodsDetail.class);
+                mContext.startActivity(intent);
+            }
+        });
+
         return view;
     }
 

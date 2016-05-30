@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/iv_goodslist"
+        android:src="@mipmap/category_phone_grid_1_1_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:id="@+id/tv_goodslist_description"
+        android:text="小米4手机 小米4移动 4G 5.0英寸/3GB内存 特别版运行2GB内存 可选"
+        style="@style/tv_common_16sp"/>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+       android:layout_width="wrap_content">
+
+        <TextView
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:id="@+id/tv_goodslist_realprice"
+            android:textColor="#BDBDBD"
+            android:text="￥1941.00"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:id="@+id/tv_goodslist_amount"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:textColor="@color/red"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="6952"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="件已售出"
+            style="@style/tv_common_16sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_goodslist_salesprice"
+        android:text="￥998"
+        android:textSize="19sp"
+        android:textColor="@color/red"
+        android:layout_gravity="left"
+        android:gravity="left"
+        style="@style/tv_common_16sp"/>
+
+</LinearLayout>

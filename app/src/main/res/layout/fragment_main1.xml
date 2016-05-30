@@ -157,6 +157,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_main1_1_1_1"
                     android:src="@mipmap/home_content_1_1_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -170,12 +171,14 @@
 
 
                     <ImageView
+                        android:id="@+id/iv_main1_1_2_1"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_1_2_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" />
 
                     <ImageView
+                        android:id="@+id/iv_main1_1_2_2"
                         android:paddingLeft="5dp"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_1_2_2"
@@ -183,6 +186,7 @@
                         android:layout_height="wrap_content" />
 
                     <ImageView
+                        android:id="@+id/iv_main1_1_2_3"
                         android:paddingLeft="5dp"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_1_2_3"
@@ -227,6 +231,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_main1_2_1_1"
                     android:src="@mipmap/home_content_2_1_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -240,12 +245,14 @@
 
 
                     <ImageView
+                        android:id="@+id/iv_main1_2_2_1"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_2_2_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" />
 
                     <ImageView
+                        android:id="@+id/iv_main1_2_2_2"
                         android:paddingLeft="5dp"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_2_2_3"
@@ -253,6 +260,7 @@
                         android:layout_height="wrap_content" />
 
                     <ImageView
+                        android:id="@+id/iv_main1_2_2_3"
                         android:paddingLeft="5dp"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_2_2_3"
@@ -308,6 +316,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/iv_main1_3_1_1"
                     android:src="@mipmap/home_content_3_1_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -321,12 +330,14 @@
 
 
                     <ImageView
+                        android:id="@+id/iv_main1_3_2_1"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_3_2_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" />
 
                     <ImageView
+                        android:id="@+id/iv_main1_3_2_2"
                         android:paddingLeft="5dp"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_3_2_2"
@@ -334,6 +345,7 @@
                         android:layout_height="wrap_content" />
 
                     <ImageView
+                        android:id="@+id/iv_main1_3_2_3"
                         android:paddingLeft="5dp"
                         android:layout_weight="1"
                         android:src="@mipmap/home_content_3_2_3"

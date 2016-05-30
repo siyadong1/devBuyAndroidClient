@@ -21,13 +21,13 @@ import java.util.List;
 public class CityAdapter extends BaseAdapter {
 
     Context mContext;
-    List<City> cities;
+    List<City> listData;
 
 
-    public CityAdapter(Context mContext,List<City> cities) {
+    public CityAdapter(Context mContext,List<City> listData) {
 
         this.mContext = mContext;
-        this.cities = cities;
+        this.listData = listData;
 
     }
 
@@ -35,12 +35,12 @@ public class CityAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return cities.size();
+        return listData.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return cities.get(position);
+        return listData.get(position);
     }
 
     @Override
@@ -64,14 +64,36 @@ public class CityAdapter extends BaseAdapter {
             mViewHolder = (ViewHolder) convertView.getTag();
         }
 
-        mViewHolder.tv_city_symbol.setText(cities.get(position).getSymbol());
-        mViewHolder.tv_city_name.setText(cities.get(position).getName());
+        mViewHolder.tv_city_symbol.setText(listData.get(position).getSymbol());
+        mViewHolder.tv_city_name.setText(listData.get(position).getName());
 
-        if (position > 0 && cities.get(position).getSymbol().equals(cities.get(position - 1).getSymbol())) {
+        if (position == getFirstAppearPositionForSymbol(listData.get(position).getSymbol())) {
+            mViewHolder.tv_city_symbol.setVisibility(View.VISIBLE);
+        } else {
             mViewHolder.tv_city_symbol.setVisibility(View.GONE);
+
         }
 
         return convertView;
+    }
+
+
+    /**
+     * 返回首次出现标示的位置
+     * @param symbol
+     * @return
+     */
+    public int getFirstAppearPositionForSymbol(String symbol) {
+
+        for (int i = 0; i <listData.size(); i++) {
+
+            if (listData.get(i).getSymbol().equals(symbol)) {
+                return i;
+            }
+        }
+
+        return -1;
+
     }
 
 

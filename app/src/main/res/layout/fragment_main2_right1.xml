@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+    <ScrollView
+        android:layout_marginLeft="@dimen/dimens_16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:padding="@dimen/dimens_16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <TextView
+                    android:textSize="19dp"
+                    android:layout_gravity="left"
+                    android:text="奇幻"
+                    style="@style/tv_common_16sp" />
+
+                <com.dev4free.devbuyandroidclient.view.GridViewCustom
+                    android:horizontalSpacing="@dimen/dimens_16dp"
+                    android:numColumns="3"
+                    android:id="@+id/gv_main2_right1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </com.dev4free.devbuyandroidclient.view.GridViewCustom>
+
+
+            </LinearLayout>
+
+
+
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <TextView
+                    android:textSize="19dp"
+                    android:layout_gravity="left"
+                    android:text="都市"
+                    style="@style/tv_common_16sp" />
+
+                <com.dev4free.devbuyandroidclient.view.GridViewCustom
+                    android:horizontalSpacing="@dimen/dimens_16dp"
+                    android:numColumns="3"
+                    android:id="@+id/gv_main2_right1_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </com.dev4free.devbuyandroidclient.view.GridViewCustom>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <TextView
+                    android:textSize="19dp"
+                    android:layout_gravity="left"
+                    android:text="二次元"
+                    style="@style/tv_common_16sp" />
+
+                <com.dev4free.devbuyandroidclient.view.GridViewCustom
+                    android:horizontalSpacing="@dimen/dimens_16dp"
+                    android:numColumns="3"
+                    android:id="@+id/gv_main2_right1_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </com.dev4free.devbuyandroidclient.view.GridViewCustom>
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+
+
+</LinearLayout>

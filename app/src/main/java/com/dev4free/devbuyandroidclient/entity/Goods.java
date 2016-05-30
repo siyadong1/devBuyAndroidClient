@@ -5,18 +5,45 @@ package com.dev4free.devbuyandroidclient.entity;
  */
 public class Goods {
 
+    private int picPath;
     private String shopName;
     private String description;
     private String realPrice;
     private String salesPrice;
+    private String saledAmount;
 
+    public int getPicPath() {
+        return picPath;
+    }
 
-    public Goods(String description, String realPrice, String salesPrice, String shopName) {
+    public void setPicPath(int picPath) {
+        this.picPath = picPath;
+    }
+
+    public String getSaledAmount() {
+        return saledAmount;
+    }
+
+    public void setSaledAmount(String saledAmount) {
+        this.saledAmount = saledAmount;
+    }
+
+    public Goods(String description, String realPrice, String saledAmount, String salesPrice, int picPath) {
         this.description = description;
         this.realPrice = realPrice;
+        this.saledAmount = saledAmount;
         this.salesPrice = salesPrice;
-        this.shopName = shopName;
+        this.picPath = picPath;
     }
+
+    public Goods(String description, String realPrice, String saledAmount, String salesPrice) {
+        this.description = description;
+        this.realPrice = realPrice;
+        this.saledAmount = saledAmount;
+        this.salesPrice = salesPrice;
+
+    }
+
 
 
     public Goods(){}

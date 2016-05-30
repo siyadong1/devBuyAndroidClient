@@ -27,7 +27,7 @@ public class CityActivity extends BaseActivity{
 
 
 
-    List<City> cities = new ArrayList<City>();
+    List<City> listData = new ArrayList<City>();
     CityAdapter mCityAdatpter;
 
     private ProgressDialogUtils progressDialogUtils;
@@ -40,7 +40,7 @@ public class CityActivity extends BaseActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
-        initTitle("所选城市");
+        initTitle("所在城市");
         x.view().inject(this);
         mContext = this;
         progressDialogUtils = new ProgressDialogUtils(mContext);
@@ -48,7 +48,7 @@ public class CityActivity extends BaseActivity{
         //data
         getCities();
         //adapter
-        mCityAdatpter = new CityAdapter(this,cities);
+        mCityAdatpter = new CityAdapter(this,listData);
         //bind
         lv_city.setAdapter(mCityAdatpter);
 
@@ -59,9 +59,17 @@ public class CityActivity extends BaseActivity{
      */
     private void getCities() {
 
-        for (int i = 0; i <30 ; i++) {
-            City mCity = new City("A","测试城市"+ i);
-            cities.add(mCity);
+        for (int i = 0; i <10 ; i++) {
+            City mCity = new City("A","测试城市A"+ i);
+            listData.add(mCity);
+        }
+        for (int i = 0; i <3 ; i++) {
+            City mCity = new City("B","测试城市B"+ i);
+            listData.add(mCity);
+        }
+        for (int i = 0; i <5 ; i++) {
+            City mCity = new City("C","测试城市C"+ i);
+            listData.add(mCity);
         }
 
 
@@ -72,7 +80,7 @@ public class CityActivity extends BaseActivity{
     @Event(value = R.id.lv_city,type = AdapterView.OnItemClickListener.class)
     private void ItemClickEvent(AdapterView<?> parent, View view, int position, long id) {
 
-        ToastUtils.showToast("点击了" + cities.get(position).getName());
+        ToastUtils.showToast("点击了" + listData.get(position).getName());
 
     }
 

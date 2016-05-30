@@ -114,7 +114,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
 
 
-    private void changeFragment(Fragment fragment) {
+    public void changeFragment(Fragment fragment) {
         transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_main, fragment);
         transaction.commit();
@@ -128,8 +128,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
      */
     public void getUserInfo() {
 
+//        XmlPullParser parser = getResources().getXml(R.xml.progressWheel);
+//        AttributeSet attributes = Xml.asAttributeSet(parser);
 
-        progressDialogUtils.showProgress();
+
+//        XmlPullParser parser =  getResources().getXml(R.xml.view_progresswheel);
+//        Xml.asAttributeSet(parser); // 得到AttributeSet
+//        ProgressWheel progressWheel = new ProgressWheel(mContext, Xml.asAttributeSet(parser));
+//        progressWheel.spin();
+//        progressDialogUtils.showProgress();
 
         Map<String,String> map = new HashMap<String,String >();
         String username = ConstantsUser.username;
@@ -139,7 +146,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         HttpUtils.post(ConstantsUrl.findUserByName, map, new OnHttpPostListener() {
             @Override
             public void onSuccess(JSONObject result) {
-                progressDialogUtils.dismissProgress();
+//                progressDialogUtils.dismissProgress();
                 try {
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
@@ -162,13 +169,13 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                progressDialogUtils.dismissProgress();
+//                progressDialogUtils.dismissProgress();
                 AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
             }
         });
 
-
-
-
     }
+
+
+
 }

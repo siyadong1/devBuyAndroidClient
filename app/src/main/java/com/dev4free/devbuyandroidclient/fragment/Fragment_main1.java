@@ -11,12 +11,15 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.activity.main1.CityActivity;
+import com.dev4free.devbuyandroidclient.activity.main2.GoodsDetail;
+import com.dev4free.devbuyandroidclient.activity.main2.GoodsList;
 import com.dev4free.devbuyandroidclient.adapter.Main1BannerPagerAdapter;
 import com.dev4free.devbuyandroidclient.adapter.Main1NavigatorAdapter;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
@@ -35,7 +38,7 @@ import java.util.concurrent.TimeUnit;
  * Created by syd on 2016/4/26.
  */
 
-public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChangeListener{
+public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChangeListener,AdapterView.OnItemClickListener{
 
 
 
@@ -87,6 +90,9 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
         vp_main1_banner.setCurrentItem(bannersList.size()*1000);
         currentItem = bannersList.size()*1000;
         gv_main1_navigation.setAdapter(navigatorAdapter);
+
+
+        gv_main1_navigation.setOnItemClickListener(this);
 
         return view;
     }
@@ -183,6 +189,17 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+        Intent intent = new Intent(mContext, GoodsList.class);
+        startActivity(intent);
+
+
+
+    }
+
 
     //用来完成图片切换的任务
     private class ViewPagerTask implements Runnable{
@@ -207,6 +224,19 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
 
         }
     };
+
+
+
+    @Event(value = {R.id.iv_main1_1_1_1,R.id.iv_main1_1_2_1,R.id.iv_main1_1_2_2,R.id.iv_main1_1_2_3,
+            R.id.iv_main1_2_1_1,R.id.iv_main1_2_2_1,R.id.iv_main1_2_2_2,R.id.iv_main1_2_2_3,
+            R.id.iv_main1_3_1_1,R.id.iv_main1_3_2_1,R.id.iv_main1_3_2_2,R.id.iv_main1_3_2_3
+    })
+    private void clickEvent(View view) {
+
+        Intent intent = new Intent(mContext, GoodsDetail.class);
+        startActivity(intent);
+
+    }
 
 
 }
