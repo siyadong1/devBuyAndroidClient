@@ -45,6 +45,8 @@ public class CityActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
         initTitle("所在城市");
+
+
         x.view().inject(this);
         mContext = this;
         progressDialogUtils = new ProgressDialogUtils(mContext);

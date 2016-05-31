@@ -52,6 +52,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mContext = this;
         SMSSDK.initSDK(this, "122be24f9ce3b", "ef2ee7086fdc48602a34478acfc3fb7a");
         x.view().inject(this);
