@@ -14,6 +14,7 @@ import com.dev4free.devbuyandroidclient.Interface.OnClickTitleBack;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.utils.ActivityUtils;
 import com.dev4free.devbuyandroidclient.utils.LogUtil;
+import com.umeng.message.PushAgent;
 
 /**
  * Created by syd on 2016/4/26.
@@ -29,7 +30,7 @@ public class BaseActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         LogUtil.d(this.getClass().getName());
         ActivityUtils.addActivity(this);
-
+        PushAgent.getInstance(this).onAppStart();
     }
 
 

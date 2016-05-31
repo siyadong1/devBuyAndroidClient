@@ -24,6 +24,7 @@ import com.dev4free.devbuyandroidclient.utils.HttpUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 import com.pgyersdk.update.PgyUpdateManager;
+import com.umeng.message.PushAgent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,15 +55,19 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         setContentView(R.layout.activity_main);
 
         mContext = this;
-        SMSSDK.initSDK(this, "122be24f9ce3b", "ef2ee7086fdc48602a34478acfc3fb7a");
         x.view().inject(this);
         progressDialogUtils = new ProgressDialogUtils(mContext);
         rb_main1.setChecked(true);
         rg_main.setOnCheckedChangeListener(this);
         manager = getFragmentManager();
         changeFragment(new Fragment_main1());
-
+        //ShareSdk短信调用
+        SMSSDK.initSDK(this, "122be24f9ce3b", "ef2ee7086fdc48602a34478acfc3fb7a");
+        //蒲公英自动升级
         PgyUpdateManager.register(this);
+        //u盟推送
+        PushAgent mPushAgent = PushAgent.getInstance(mContext);
+        mPushAgent.enable();
 
 
         ConstantsUser.username = SharedPreferenceUtils.getDefaultSharedPreferences().getString("username","");
