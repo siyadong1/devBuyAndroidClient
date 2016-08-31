@@ -17,8 +17,8 @@
         style="@style/ll_height45dp_nomargin_padding">
 
         <TextView
+            android:id="@+id/tv_aboutus_title"
             android:layout_centerInParent="true"
-            android:text="关于DevBuy"
            style="@style/tv_common_16sp" />
     </RelativeLayout>
 
@@ -29,10 +29,10 @@
         style="@style/ll_height45dp_nomargin_padding">
 
         <TextView
+            android:id="@+id/tv_aboutus_content"
             android:gravity="left"
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_marginBottom="@dimen/dimens_16dp"
-            android:text="      DevBuy是一款DevBuy是一款DevBuy是一款DevBuy是一款DevBuy是一款DevBuy是一款DevBuy是一款．．．"
             style="@style/tv_common_16sp" />
 
     </LinearLayout>

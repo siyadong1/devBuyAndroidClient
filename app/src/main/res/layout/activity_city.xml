@@ -19,7 +19,6 @@
         android:id="@+id/phlv_city"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </com.dev4free.devbuyandroidclient.view.PinnedHeaderListView>
 
     <com.dev4free.devbuyandroidclient.view.BladeView

@@ -22,7 +22,7 @@
             android:gravity="left"
             android:layout_marginLeft="0dp"
             android:layout_gravity="left"
-            android:text="      尊敬的老板尊敬的老板尊敬的老板尊敬的老板尊敬的老板尊敬的老板尊敬的老板尊敬的老板"
+            android:hint="宝宝们，请输入您宝贵的意见！"
             style="@style/et_common_style" />
 
         </LinearLayout>

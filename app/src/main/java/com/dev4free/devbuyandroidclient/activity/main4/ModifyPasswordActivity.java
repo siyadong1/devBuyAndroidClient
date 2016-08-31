@@ -140,8 +140,8 @@ public class ModifyPasswordActivity extends BaseActivity{
 
         Map<String,String> map = new HashMap<String,String >();
         String username;
-        if (!TextUtils.isEmpty(ConstantsUser.username)) {
-            username = ConstantsUser.username;
+        if (!TextUtils.isEmpty(SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,""))) {
+            username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
         } else {
             username = SharedPreferenceUtils.getDefaultSharedPreferences().getString("username","");
         }

@@ -30,32 +30,30 @@
 
 
         <TextView
-            android:id="@+id/tv_manageaddress_name"
+            android:id="@+id/tv_ordersubmit_address_name"
             android:layout_marginTop="@dimen/dimens_16dp"
-            android:text="收货人：斯亚东"
             style="@style/tv_common_16sp" />
 
         <TextView
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_alignParentRight="true"
-            android:id="@+id/tv_manageaddress_phone"
-            android:text="15228935891"
+            android:id="@+id/tv_ordersubmit_address_phone"
             style="@style/tv_common_16sp" />
 
 
         <TextView
-            android:id="@+id/tv_manageaddress_address"
+            android:id="@+id/tv_ordersubmit_address_detail_address"
             android:gravity="left"
             android:layout_marginRight="30dp"
             android:layout_marginTop="24dp"
-            android:layout_below="@id/tv_manageaddress_name"
-            android:text="收货地址：浙江省杭州市滨江区莲花乡池水沟子8存8组1户五栋99楼1号2号房间上铺"
+            android:layout_below="@id/tv_ordersubmit_address_name"
             style="@style/tv_common_16sp" />
 
 
         <ImageView
+            android:layout_alignTop="@id/tv_ordersubmit_address_detail_address"
+            android:layout_toRightOf="@id/tv_ordersubmit_address_detail_address"
             android:layout_alignParentRight="true"
-            android:layout_alignBaseline="@id/tv_manageaddress_address"
             android:src="@mipmap/my_right_arror_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -81,12 +79,12 @@
         <TextView
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_alignParentLeft="true"
-            android:id="@+id/ck_main3_shopname"
-            android:text="小米手机旗舰店"
+            android:id="@+id/tv_ordersubmit_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
+            android:id="@+id/btn_ordersubmit_goods_delete"
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_alignParentRight="true"
             android:textColor="#FF707070"
@@ -96,45 +94,41 @@
 
 
         <ImageView
-            android:id="@+id/iv_order1_goods_picture"
+            android:id="@+id/iv_ordersubmit_goods_pic"
             android:layout_marginLeft="62dp"
             android:layout_marginTop="@dimen/dimens_16dp"
-            android:layout_below="@id/ck_main3_shopname"
-            android:src="@mipmap/shopingcar_phone_grid_1_1_1"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
+            android:layout_below="@id/tv_ordersubmit_goods_name"
+            android:layout_height="75dp"
+            android:layout_width="35dp" />
 
         <TextView
             android:gravity="left"
-            android:id="@+id/tv_main3_description"
-            android:layout_toRightOf="@id/iv_order1_goods_picture"
+            android:id="@+id/tv_ordersubmit_goods_desc"
+            android:layout_toRightOf="@id/iv_ordersubmit_goods_pic"
             android:layout_marginTop="@dimen/dimens_16dp"
-            android:layout_below="@id/ck_main3_shopname"
+            android:layout_below="@id/tv_ordersubmit_goods_name"
             android:layout_marginLeft="37dp"
-            android:text="小米4手机 小米4移动4G 5.0英寸/3GB内存 特别版 运行2GB内存 可选"
             style="@style/tv_common_16sp" />
 
 
         <TextView
             android:layout_marginTop="2dp"
-            android:layout_alignLeft="@id/tv_main3_description"
+            android:layout_alignLeft="@id/tv_ordersubmit_goods_desc"
             android:textSize="18sp"
             android:textColor="@color/red"
-            android:layout_below="@id/tv_main3_description"
-            android:id="@+id/tv_main3_realprice"
-            android:text="￥34"
+            android:layout_below="@id/tv_ordersubmit_goods_desc"
+            android:id="@+id/tv_ordersubmit_goods_current_price"
             style="@style/tv_common_16sp" />
 
 
         <TextView
             android:layout_marginTop="2dp"
             android:layout_marginLeft="@dimen/dimens_16dp"
-            android:layout_toRightOf="@id/tv_main3_realprice"
+            android:layout_toRightOf="@id/tv_ordersubmit_goods_current_price"
             android:textSize="18sp"
             android:textColor="#BDBDBD"
-            android:layout_below="@id/tv_main3_description"
-            android:id="@+id/tv_main3_saleprice"
-            android:text="￥35-128"
+            android:layout_below="@id/tv_ordersubmit_goods_desc"
+            android:id="@+id/tv_ordersubmit_goods_old_price"
             style="@style/tv_common_16sp" />
 
     </RelativeLayout>
@@ -146,16 +140,12 @@
         android:gravity="start"
         android:layout_height="90dp"
        style="@style/ll_height45dp_margin_padding">
-
-
         <TextView
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:text="购买数量"
             style="@style/tv_common_16sp" />
-
-
         <TextView
             android:id="@+id/tv_ordersubmit_add"
             android:layout_height="30dp"
@@ -165,21 +155,16 @@
             android:layout_alignParentRight="true"
             android:text="+"
             style="@style/tv_common_16sp" />
-
         <TextView
-            android:id="@+id/tv_ordersubmit_money"
+            android:id="@+id/tv_ordersubmit_amount"
             android:layout_marginLeft="@dimen/dimens_16dp"
             android:layout_marginRight="@dimen/dimens_16dp"
             android:layout_toLeftOf="@id/tv_ordersubmit_add"
             android:layout_alignBaseline="@id/tv_ordersubmit_add"
-            android:text="100"
+            android:text="1"
            style="@style/tv_common_16sp" />
-
-
-
-
         <TextView
-            android:layout_toLeftOf="@id/tv_ordersubmit_money"
+            android:layout_toLeftOf="@id/tv_ordersubmit_amount"
             android:id="@+id/tv_ordersubmit_subtraction"
             android:layout_height="30dp"
             android:layout_width="30dp"
@@ -187,24 +172,23 @@
             android:layout_marginTop="@dimen/dimens_16dp"
             android:text="一"
             style="@style/tv_common_16sp" />
-
-
         <TextView
             android:id="@+id/tv_ordersubmit_totalmoney"
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_alignParentRight="true"
             android:layout_below="@id/tv_ordersubmit_subtraction"
             android:textColor="@color/red"
-            android:text="￥399.00"
            style="@style/tv_common_16sp" />
-
         <TextView
+            android:id="@+id/tv_ordersubmit_amount_desc"
             android:layout_toLeftOf="@id/tv_ordersubmit_totalmoney"
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_below="@id/tv_ordersubmit_subtraction"
             style="@style/tv_common_16sp"
-            android:text="共100件商品，合计：" />
+             />
     </RelativeLayout>
+
+
 
 
 
@@ -215,34 +199,28 @@
 
 
     <RelativeLayout
-
         android:layout_width="wrap_content"
        android:layout_height="wrap_content">
-
         <Button
             android:id="@+id/btn_ordersubmit_submitorder"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/dimens_16dp"
             android:text="提交订单"
             style="@style/btn_red_small" />
-
-
-
         <TextView
             android:id="@+id/tv_ordersubmit_alltotalmoney"
             android:textSize="19sp"
             android:textColor="@color/red"
             android:layout_toLeftOf="@id/btn_ordersubmit_submitorder"
             android:layout_alignBaseline="@id/btn_ordersubmit_submitorder"
-            android:text="￥399.00"
             style="@style/tv_common_16sp"/>
-
-
         <TextView
             android:layout_toLeftOf="@id/tv_ordersubmit_alltotalmoney"
             android:layout_alignBaseline="@id/btn_ordersubmit_submitorder"
             android:text="总计"
             style="@style/tv_common_16sp" />
-
     </RelativeLayout>
+
+
+
 </LinearLayout>

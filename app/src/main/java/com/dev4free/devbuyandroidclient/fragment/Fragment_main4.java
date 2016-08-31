@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dev4free.devbuyandroidclient.Interface.AlertInterface;
+import com.dev4free.devbuyandroidclient.Interface.OnHttpPostListener;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.activity.main4.AboutUsActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.AccountMangeActivity;
@@ -20,15 +21,25 @@ import com.dev4free.devbuyandroidclient.activity.main4.FeedBackActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.LoginActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.ModifyPasswordActivity;
 import com.dev4free.devbuyandroidclient.activity.main4.OrderActivity;
+import com.dev4free.devbuyandroidclient.activity.main4.WalletRechargeActivity;
+import com.dev4free.devbuyandroidclient.constants.ConstantsHttp;
+import com.dev4free.devbuyandroidclient.constants.ConstantsUrl;
 import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
+import com.dev4free.devbuyandroidclient.utils.HttpUtils;
+import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by syd on 2016/4/26.
@@ -40,10 +51,19 @@ public class Fragment_main4 extends BaseFragment{
 
     ImageOptions imageOptions;
 
+
+
+    private ProgressDialogUtils progressDialogUtils;
+
+
+
     @ViewInject(R.id.tv_main4_username)
     TextView tv_main4_username;
+    @ViewInject(R.id.tv_main4_wallet_money)
+    TextView tv_main4_wallet_money;
     @ViewInject(R.id.iv_main4_avatar)
     ImageView iv_main4_avatar;
+
 
     @Nullable
     @Override
@@ -53,6 +73,7 @@ public class Fragment_main4 extends BaseFragment{
 
         View view = inflater.inflate(R.layout.fragment_main4,null);
         x.view().inject(this,view);
+        progressDialogUtils = new ProgressDialogUtils(mContext);
         ((TextView)view.findViewById(R.id.tv_title_content)).setText("我的");
         view.findViewById(R.id.ll_title_back).setVisibility(View.GONE);
 
@@ -67,7 +88,7 @@ public class Fragment_main4 extends BaseFragment{
                 .build();
 
 
-        if (ConstantsUser.username != null) {
+        if (SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"") != null) {
 
         }
 
@@ -85,7 +106,7 @@ public class Fragment_main4 extends BaseFragment{
 
     @Event(value = {R.id.ll_main4_exit,R.id.ll_main4_modify_password,R.id.ll_main4_feedback,
                     R.id.ll_main4_aboutus,R.id.ll_main4_custom_srevice,R.id.ll_main4_order,R.id.ll_main4_order_daifukuan,
-                    R.id.ll_main4_order_daifahuo,R.id.ll_main4_order_daishouhuo,R.id.ll_main4_avatar})
+                    R.id.ll_main4_order_daifahuo,R.id.ll_main4_order_daishouhuo,R.id.ll_main4_avatar,R.id.ll_main4_wallet})
     private void clickEvent(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -120,6 +141,15 @@ public class Fragment_main4 extends BaseFragment{
             case R.id.ll_main4_order:
 
                 intent = new Intent(mContext, OrderActivity.class);
+                startActivity(intent);
+
+                break;
+
+
+            //进入钱包
+            case R.id.ll_main4_wallet:
+
+                intent = new Intent(mContext, WalletRechargeActivity.class);
                 startActivity(intent);
 
                 break;
@@ -204,6 +234,52 @@ public class Fragment_main4 extends BaseFragment{
         super.onResume();
 
         x.image().bind(iv_main4_avatar, ConstantsUser.avatar,imageOptions);
+        getWalletAmount();
+    }
+
+
+    /**
+     * 获取钱包余额
+     */
+    public void getWalletAmount() {
+
+
+        progressDialogUtils.showProgress();
+
+        Map<String,String> map = new HashMap<String,String >();
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
+
+        map.put("username",username);
+
+        HttpUtils.post(ConstantsUrl.userWalletQuery, map, new OnHttpPostListener() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                progressDialogUtils.dismissProgress();
+                try {
+                    if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
+
+                        tv_main4_wallet_money.setText(result.optString("content") + "元");
+
+                    } else {
+                        AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_parse_error));
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                progressDialogUtils.dismissProgress();
+                AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
+            }
+        });
+
+
+
+
 
     }
 }

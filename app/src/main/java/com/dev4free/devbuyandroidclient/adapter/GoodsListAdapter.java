@@ -9,8 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dev4free.devbuyandroidclient.R;
-import com.dev4free.devbuyandroidclient.entity.Goods;
+import com.dev4free.devbuyandroidclient.entity.GoodsListBean;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -23,9 +24,9 @@ import java.util.List;
 public class GoodsListAdapter extends BaseAdapter {
 
     Context mContext;
-    List<Goods> listData;
+    List<GoodsListBean> listData;
 
-    public GoodsListAdapter(Context mContext,List<Goods> listData) {
+    public GoodsListAdapter(Context mContext,List<GoodsListBean> listData) {
         this.listData = listData;
         this.mContext = mContext;
     }
@@ -60,13 +61,12 @@ public class GoodsListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-
-       viewHolder.iv_goodslist.setImageDrawable(mContext.getResources().getDrawable(listData.get(position).getPicPath()));
+        Glide.with(mContext).load(listData.get(position).getImage()).error(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher).into(viewHolder.iv_goodslist);
         viewHolder.tv_goodslist_description.setText(listData.get(position).getDescription());
-        viewHolder.tv_goodslist_amount.setText(listData.get(position).getSaledAmount());
-        viewHolder.tv_goodslist_realprice.setText(listData.get(position).getRealPrice());
+        viewHolder.tv_goodslist_amount.setText(listData.get(position).getSales_volume());
+        viewHolder.tv_goodslist_realprice.setText("￥" + listData.get(position).getPrice());
         viewHolder.tv_goodslist_realprice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
-        viewHolder.tv_goodslist_salesprice.setText(listData.get(position).getSalesPrice());
+        viewHolder.tv_goodslist_salesprice.setText("￥" + listData.get(position).getCurrent_price());
 
         return convertView;
 

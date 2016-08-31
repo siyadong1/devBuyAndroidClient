@@ -72,14 +72,13 @@ public class CityAdapter extends BaseAdapter implements SectionIndexer,PinnedHea
         int section = getSectionForPosition(position);
 
         if (position == getPositionForSection(section)) {
-            mViewHolder.tv_city_symbol.setText(listData.get(position).getSymbol());
+            mViewHolder.tv_city_symbol.setText(listData.get(position).getInitial());
             mViewHolder.tv_city_symbol.setVisibility(View.VISIBLE);
         } else {
             mViewHolder.tv_city_symbol.setVisibility(View.GONE);
         }
 
-        mViewHolder.tv_city_name.setText(listData.get(position).getName());
-
+        mViewHolder.tv_city_name.setText(listData.get(position).getCityName());
 
 
         return convertView;
@@ -114,7 +113,7 @@ public class CityAdapter extends BaseAdapter implements SectionIndexer,PinnedHea
 
         for (int i = 0; i < listData.size(); i++)
         {
-            char firstChar = listData.get(i).getSymbol().toUpperCase(Locale.CHINA).charAt(0);
+            char firstChar = listData.get(i).getInitial().toUpperCase(Locale.CHINA).charAt(0);
             if (firstChar == sectionIndex)
             {
                 return i;
@@ -129,7 +128,7 @@ public class CityAdapter extends BaseAdapter implements SectionIndexer,PinnedHea
      */
     @Override
     public int getSectionForPosition(int position) {
-        return listData.get(position).getSymbol().toUpperCase(Locale.CHINA).charAt(0);
+        return listData.get(position).getInitial().toUpperCase(Locale.CHINA).charAt(0);
     }
 
 
@@ -161,7 +160,7 @@ public class CityAdapter extends BaseAdapter implements SectionIndexer,PinnedHea
     @Override
     public void configurePinnedHeader(View header, int position, int alpha) {
 
-        ((TextView) header.findViewById(R.id.tv_city_pinnedheader)).setText(listData.get(position).getSymbol().toUpperCase(Locale.CHINA).charAt(0) + "");
+        ((TextView) header.findViewById(R.id.tv_city_pinnedheader)).setText(listData.get(position).getInitial().toUpperCase(Locale.CHINA).charAt(0) + "");
 
 
     }

@@ -1,14 +1,15 @@
 package com.dev4free.devbuyandroidclient.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.dev4free.devbuyandroidclient.R;
+import com.dev4free.devbuyandroidclient.entity.NavigatarBean;
 
 import java.util.List;
 
@@ -17,11 +18,11 @@ import java.util.List;
  */
 public class Main1NavigatorAdapter extends BaseAdapter {
 
-    List<Drawable> navigatorList;
+    List<NavigatarBean> navigatorList;
     Context mContext;
 
 
-    public Main1NavigatorAdapter(Context mContext, List<Drawable> navigatorList) {
+    public Main1NavigatorAdapter(Context mContext, List<NavigatarBean> navigatorList) {
         this.mContext = mContext;
         this.navigatorList = navigatorList;
     }
@@ -46,7 +47,8 @@ public class Main1NavigatorAdapter extends BaseAdapter {
 
         convertView  = LayoutInflater.from(mContext).inflate(R.layout.adapter_fragment1_navigator,null);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.iv_fragment1_navigator);
-        imageView.setImageDrawable(navigatorList.get(position));
+        Glide.with(mContext).load(navigatorList.get(position).getCf_url()).error(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher).into(imageView);
+
 
         return convertView;
     }

@@ -11,70 +11,56 @@
         android:gravity="left"
         android:layout_height="wrap_content"
         style="@style/ll_height45dp_nomargin_padding">
-
-
-        <CheckBox
+        <TextView
+            style="@style/tv_common_16sp"
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_alignParentLeft="true"
-            android:id="@+id/ck_main3_shopname"
-            android:text="小米手机旗舰店"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:id="@+id/tv_main3_goods_name"
+            />
         <Button
+            android:id="@+id/btn_main3_delete"
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_alignParentRight="true"
             android:textColor="#FF707070"
             android:background="#FF979797"
             android:text="删除"
             style="@style/btn_red_small" />
-
-
         <ImageView
-            android:id="@+id/iv_order1_goods_picture"
+            android:id="@+id/iv_main3_goods_pic"
             android:layout_marginLeft="62dp"
             android:layout_marginTop="@dimen/dimens_16dp"
-            android:layout_below="@id/ck_main3_shopname"
-            android:src="@mipmap/shopingcar_phone_grid_1_1_1"
-            android:layout_height="wrap_content"
-           android:layout_width="wrap_content" />
-
+            android:layout_below="@id/tv_main3_goods_name"
+            android:layout_height="75dp"
+           android:layout_width="35dp" />
         <TextView
             android:gravity="left"
-            android:id="@+id/tv_main3_description"
-            android:layout_toRightOf="@id/iv_order1_goods_picture"
+            android:id="@+id/tv_main3_goods_desc"
+            android:layout_toRightOf="@id/iv_main3_goods_pic"
             android:layout_marginTop="@dimen/dimens_16dp"
-            android:layout_below="@id/ck_main3_shopname"
+            android:layout_below="@id/tv_main3_goods_name"
             android:layout_marginLeft="37dp"
-            android:text="小米4手机 小米4移动4G 5.0英寸/3GB内存 特别版 运行2GB内存 可选"
             style="@style/tv_common_16sp" />
-
-
         <TextView
             android:layout_marginTop="2dp"
             android:layout_marginLeft="@dimen/dimens_16dp"
-            android:layout_alignLeft="@id/tv_main3_description"
+            android:layout_alignLeft="@id/tv_main3_goods_desc"
             android:textSize="18sp"
             android:textColor="@color/red"
-            android:layout_below="@id/tv_main3_description"
-            android:id="@+id/tv_main3_realprice"
-            android:text="￥34"
+            android:layout_below="@id/tv_main3_goods_desc"
+            android:id="@+id/tv_main3_goods_current_price"
             style="@style/tv_common_16sp" />
-
-
         <TextView
             android:layout_marginBottom="@dimen/dimens_16dp"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="@dimen/dimens_16dp"
-            android:layout_toRightOf="@id/tv_main3_realprice"
+            android:layout_toRightOf="@id/tv_main3_goods_current_price"
             android:textSize="18sp"
             android:textColor="#BDBDBD"
-            android:layout_below="@id/tv_main3_description"
-            android:id="@+id/tv_main3_saleprice"
-            android:text="￥35-128"
+            android:layout_below="@id/tv_main3_goods_desc"
+            android:id="@+id/tv_main3_goods_old_price"
             style="@style/tv_common_16sp" />
-
     </RelativeLayout>
+
 
 
 </LinearLayout>

@@ -5,10 +5,11 @@ package com.dev4free.devbuyandroidclient.constants;
  */
 public class ConstantsUser {
 
-    public static String username;
+    public static String USERNAME = "username";
     public static String nickname;
     public static String gender;
     public static String avatar;
+    public static String CITYNAME = "CITYNAME";
 
 
 

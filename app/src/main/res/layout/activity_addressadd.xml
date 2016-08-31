@@ -12,6 +12,8 @@
     <LinearLayout
         style="@style/ll_height45dp_nomargin_padding">
         <TextView
+            android:layout_width="70dp"
+            android:gravity="left"
             android:text="收货人"
             style="@style/tv_common_16sp"/>
         <EditText
@@ -23,6 +25,8 @@
     <LinearLayout
         style="@style/ll_height45dp_nomargin_padding">
         <TextView
+            android:layout_width="70dp"
+            android:gravity="left"
             android:text="联系电话"
             style="@style/tv_common_16sp"/>
         <EditText
@@ -35,6 +39,8 @@
     <LinearLayout
         style="@style/ll_height45dp_nomargin_padding">
         <TextView
+            android:layout_width="70dp"
+            android:gravity="left"
             android:text="所在省"
             style="@style/tv_common_16sp"/>
         <EditText
@@ -47,6 +53,8 @@
     <LinearLayout
         style="@style/ll_height45dp_nomargin_padding">
         <TextView
+            android:layout_width="70dp"
+            android:gravity="left"
             android:text="所在市"
             style="@style/tv_common_16sp"/>
         <EditText
@@ -61,6 +69,8 @@
         android:layout_height="wrap_content"
         style="@style/ll_height45dp_nomargin_padding">
         <TextView
+            android:layout_width="70dp"
+            android:gravity="left"
             android:layout_marginTop="@dimen/dimens_16dp"
             android:layout_gravity="left"
             android:text="详细地址"
@@ -71,6 +81,18 @@
             android:id="@+id/et_addressadd_detail"
             android:hint="收货人所在城市"
             style="@style/et_common_style" />
+    </LinearLayout>
+
+
+    <LinearLayout
+       style="@style/ll_height45dp_nomargin_padding">
+
+        <RadioButton
+            style="@style/tv_common_16sp"
+            android:id="@+id/rb_addressadd_default"
+            android:text="默认地址"
+            />
+
     </LinearLayout>
 
 

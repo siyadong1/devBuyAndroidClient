@@ -21,6 +21,7 @@ public class ActivityUtils {
     public static void removeActivity(Activity activity){
 
         activities.remove(activity);
+        activity.finish();
     }
 
 

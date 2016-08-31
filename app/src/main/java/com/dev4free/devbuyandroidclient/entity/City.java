@@ -6,33 +6,37 @@ package com.dev4free.devbuyandroidclient.entity;
  */
 public class City  {
 
+    private String cityName;
+    private String initial;
 
-    private String symbol;
-    private String name;
 
-
-    public City(String symbol, String name) {
-        this.symbol = symbol;
-        this.name = name;
+    public City(String cityName, String initial) {
+        this.cityName = cityName;
+        this.initial = initial;
     }
 
-    public City() {
 
+    public String getCityName() {
+        return cityName;
     }
 
-    public String getName() {
-        return name;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getInitial() {
+        return initial;
     }
 
-    public String getSymbol() {
-        return symbol;
+    public void setInitial(String initial) {
+        this.initial = initial;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
+    @Override
+    public String toString() {
+        return "City{" +
+                "cityName='" + cityName + '\'' +
+                ", initial='" + initial + '\'' +
+                '}';
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+
+
+
+
+
+            <com.dev4free.devbuyandroidclient.view.ListViewCustom
+                android:layout_margin="@dimen/dimens_16dp"
+                android:id="@+id/lv_order4"
+                android:divider="@color/background"
+                android:dividerHeight="@dimen/dimens_16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.dev4free.devbuyandroidclient.view.ListViewCustom>
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

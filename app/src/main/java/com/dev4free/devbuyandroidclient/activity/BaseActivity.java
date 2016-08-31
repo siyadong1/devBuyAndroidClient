@@ -28,7 +28,7 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        LogUtil.d(this.getClass().getName());
+        LogUtil.e(this.getClass().getName());
         ActivityUtils.addActivity(this);
         PushAgent.getInstance(this).onAppStart();
     }

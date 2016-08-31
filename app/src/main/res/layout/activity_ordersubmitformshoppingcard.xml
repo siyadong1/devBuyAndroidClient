@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            //地址
+            <RelativeLayout
+                android:id="@+id/rl_ordersubmitfromshoppingcar_address"
+                android:paddingBottom="@dimen/dimens_16dp"
+                android:layout_marginLeft="@dimen/dimens_16dp"
+                android:layout_marginRight="@dimen/dimens_16dp"
+                android:layout_marginTop="22dp"
+                android:paddingLeft="@dimen/dimens_16dp"
+                android:paddingRight="@dimen/dimens_16dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_ordersubmitfromshoppingcar_address_name"
+                    android:layout_marginTop="@dimen/dimens_16dp"
+                    style="@style/tv_common_16sp" />
+                <TextView
+                    android:layout_marginTop="@dimen/dimens_16dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/tv_ordersubmitfromshoppingcar_address_phone"
+                    style="@style/tv_common_16sp" />
+                <TextView
+                    android:id="@+id/tv_ordersubmitfromshoppingcar_address_detail_address"
+                    android:gravity="left"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_below="@id/tv_ordersubmitfromshoppingcar_address_name"
+                    style="@style/tv_common_16sp" />
+                <ImageView
+                    android:layout_alignTop="@id/tv_ordersubmitfromshoppingcar_address_detail_address"
+                    android:layout_toRightOf="@id/tv_ordersubmitfromshoppingcar_address_detail_address"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/my_right_arror_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+
+            //商品列表
+
+            <com.dev4free.devbuyandroidclient.view.ListViewCustom
+                android:id="@+id/lv_ordersubmitfromshoppingcar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.dev4free.devbuyandroidclient.view.ListViewCustom>
+
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_marginBottom="@dimen/dimens_45dp"
+                android:layout_marginTop="@dimen/dimens_16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_ordersubmitfromshoppingcar_submitorder"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dimens_16dp"
+                    android:text="提交订单"
+                    style="@style/btn_red_small" />
+                <TextView
+                    android:id="@+id/tv_ordersubmitfromshoppingcar_alltotalmoney"
+                    android:textSize="19sp"
+                    android:textColor="@color/red"
+                    android:layout_toLeftOf="@id/btn_ordersubmitfromshoppingcar_submitorder"
+                    android:layout_alignBaseline="@id/btn_ordersubmitfromshoppingcar_submitorder"
+                    style="@style/tv_common_16sp"/>
+                <TextView
+                    android:layout_toLeftOf="@id/tv_ordersubmitfromshoppingcar_alltotalmoney"
+                    android:layout_alignBaseline="@id/btn_ordersubmitfromshoppingcar_submitorder"
+                    android:text="总计"
+                    style="@style/tv_common_16sp" />
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

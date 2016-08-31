@@ -2,12 +2,12 @@ package com.dev4free.devbuyandroidclient.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +15,37 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.dev4free.devbuyandroidclient.Interface.OnHttpPostListener;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.activity.main1.CityActivity;
 import com.dev4free.devbuyandroidclient.activity.main2.GoodsDetail;
 import com.dev4free.devbuyandroidclient.activity.main2.GoodsList;
 import com.dev4free.devbuyandroidclient.adapter.Main1BannerPagerAdapter;
 import com.dev4free.devbuyandroidclient.adapter.Main1NavigatorAdapter;
+import com.dev4free.devbuyandroidclient.constants.ConstantsHttp;
+import com.dev4free.devbuyandroidclient.constants.ConstantsUrl;
+import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
+import com.dev4free.devbuyandroidclient.entity.BannerBean;
+import com.dev4free.devbuyandroidclient.entity.NavigatarBean;
+import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
+import com.dev4free.devbuyandroidclient.utils.HttpUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
+import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -49,8 +65,8 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
     private ProgressDialogUtils progressDialogUtils;
     private Context mContext;
 
-    List<Drawable> bannersList = new ArrayList<Drawable>();
-    List<Drawable> navigatorList = new ArrayList<Drawable>();
+    List<BannerBean> bannersList = new ArrayList<BannerBean>();
+    List<NavigatarBean> navigatorList = new ArrayList<NavigatarBean>();
     Main1BannerPagerAdapter bannerPagerAdapter = null;
     Main1NavigatorAdapter navigatorAdapter =null;
 
@@ -69,6 +85,10 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
     GridView gv_main1_navigation;
 
 
+    @ViewInject(R.id.tv_main1_city)
+    TextView tv_main1_city;
+
+
 
     @Nullable
     @Override
@@ -78,59 +98,32 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
         mContext = getActivity();
         x.view().inject(this,view);
         progressDialogUtils = new ProgressDialogUtils(mContext);
-        //data
-        initBanners();
-        initNavigator();
-        //adapter
-        bannerPagerAdapter = new Main1BannerPagerAdapter(mContext,bannersList);
-        navigatorAdapter = new Main1NavigatorAdapter(mContext,navigatorList);
-        //bind
-        vp_main1_banner.setAdapter(bannerPagerAdapter);
+
+
+       getBannerData();
+       getNavigatorData();
+
+
         vp_main1_banner.addOnPageChangeListener(this);
-        vp_main1_banner.setCurrentItem(bannersList.size()*1000);
-        currentItem = bannersList.size()*1000;
-        gv_main1_navigation.setAdapter(navigatorAdapter);
-
-
         gv_main1_navigation.setOnItemClickListener(this);
 
         return view;
     }
 
 
-    /**
-     * 获取导航栏的资源
-     */
-    private void initNavigator() {
+    @Override
+    public void onResume() {
+        super.onResume();
 
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_1_1));
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_1_2));
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_1_3));
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_1_4));
-
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_2_1));
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_2_2));
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_2_3));
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_2_4));
-
-
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_3_1));
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_3_2));
-        navigatorList.add(getResources().getDrawable(R.mipmap.home_grid_3_3));
+        if (TextUtils.isEmpty(SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.CITYNAME, "")) || SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.CITYNAME, "").equals("无")) {
+            tv_main1_city.setText("请选择");
+        } else {
+            tv_main1_city.setText(SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.CITYNAME,""));
+        }
 
     }
 
 
-    /**
-     * 获取Banner的资源
-     */
-    private void initBanners() {
-
-        bannersList.add(getResources().getDrawable(R.mipmap.banner1));
-        bannersList.add(getResources().getDrawable(R.mipmap.banner2));
-        bannersList.add(getResources().getDrawable(R.mipmap.banner3));
-
-    }
 
     @Event(R.id.ll_main1_city)
     private void goToCity(View view) {
@@ -194,7 +187,113 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
 
 
         Intent intent = new Intent(mContext, GoodsList.class);
+        intent.putExtra("category",navigatorList.get(position).getCategory());
         startActivity(intent);
+
+
+
+    }
+
+
+    /**
+     * 初始化banner数据
+     */
+    public void getBannerData() {
+
+        progressDialogUtils.showProgress();
+
+        Map<String,String> map = new HashMap<String,String >();
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
+
+        map.put("username",username);
+
+        HttpUtils.post(ConstantsUrl.bannerInitial, map, new OnHttpPostListener() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                progressDialogUtils.dismissProgress();
+                try {
+                    if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
+
+
+                        bannersList = new Gson().fromJson(result.getJSONArray("content").toString(),new TypeToken<List<BannerBean>>(){}.getType());
+                        if (bannersList != null && bannersList.size() > 0) {
+
+                            //adapter
+                            bannerPagerAdapter = new Main1BannerPagerAdapter(mContext,bannersList);
+                            //bind
+                            vp_main1_banner.setAdapter(bannerPagerAdapter);
+                            vp_main1_banner.setCurrentItem(bannersList.size()*1000);
+                            currentItem = bannersList.size()*1000;
+                        }
+
+                    } else {
+                        AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_parse_error));
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                progressDialogUtils.dismissProgress();
+                AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
+            }
+        });
+
+
+
+
+
+    }
+
+
+    /**
+     * 获取首页导航项目
+     */
+    public void getNavigatorData() {
+
+
+        progressDialogUtils.showProgress();
+
+        Map<String,String> map = new HashMap<String,String >();
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
+
+        map.put("username",username);
+
+        HttpUtils.post(ConstantsUrl.classificationInitial, map, new OnHttpPostListener() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                progressDialogUtils.dismissProgress();
+                try {
+                    if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
+
+                        navigatorList = new Gson().fromJson(result.getJSONArray("content").toString(),new TypeToken<List<NavigatarBean>>(){}.getType());
+                        if (navigatorList != null && navigatorList.size() > 0) {
+                            navigatorAdapter = new Main1NavigatorAdapter(mContext,navigatorList);
+                            gv_main1_navigation.setAdapter(navigatorAdapter);
+                        }
+
+                    } else {
+                        AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_parse_error));
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                progressDialogUtils.dismissProgress();
+                AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
+            }
+        });
+
+
 
 
 

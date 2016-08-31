@@ -31,32 +31,31 @@
 
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_below="@id/lv_main3"
-        style="@style/ll_height45dp_margin_padding">
-        <CheckBox
-            android:id="@+id/ck_main4_select_all"
-            android:text="全选"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/btn_main3_settle"
-            android:layout_alignParentRight="true"
-            android:text="结算(3)"
-            style="@style/btn_red_small" />
+        style="@style/ll_height45dp_nomargin_padding">
         <TextView
-            android:id="@+id/tv_main3_total_money"
-            android:layout_alignBaseline="@id/btn_main3_settle"
-            android:layout_toLeftOf="@id/btn_main3_settle"
-            android:textColor="@color/red"
-            android:text="￥90"
-            style="@style/tv_common_16sp"/>
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_main3_total_amount"
+            style="@style/tv_common_16sp"
+            />
         <TextView
-            android:layout_toLeftOf="@id/tv_main3_total_money"
-            android:layout_alignBaseline="@id/tv_main3_total_money"
+            android:layout_marginLeft="@dimen/dimens_16dp"
             android:text="合计："
             style="@style/tv_common_16sp" />
-    </RelativeLayout>
+        <TextView
+            android:gravity="left"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:ellipsize="end"
+            android:id="@+id/tv_main3_total_money"
+            android:textColor="@color/red"
+            style="@style/tv_common_16sp"/>
+        <Button
+            android:id="@+id/btn_main3_settle"
+            android:text="结算"
+            style="@style/btn_red_small" />
+    </LinearLayout>
 
 
 

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+    <RelativeLayout
+        android:gravity="left"
+        android:layout_height="wrap_content"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            style="@style/tv_common_16sp"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/tv_ordersubmitfromshoppingcar_goods_name"
+            />
+        <Button
+            android:id="@+id/btn_ordersubmitfromshoppingcar_delete"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_alignParentRight="true"
+            android:textColor="#FF707070"
+            android:background="#FF979797"
+            android:text="删除"
+            style="@style/btn_red_small" />
+        <ImageView
+            android:id="@+id/iv_ordersubmitfromshoppingcar_goods_pic"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_below="@id/tv_ordersubmitfromshoppingcar_goods_name"
+            android:layout_height="75dp"
+            android:layout_width="35dp" />
+        <TextView
+            android:gravity="left"
+            android:id="@+id/tv_ordersubmitfromshoppingcar_goods_desc"
+            android:layout_toRightOf="@id/iv_ordersubmitfromshoppingcar_goods_pic"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_below="@id/tv_ordersubmitfromshoppingcar_goods_name"
+            android:layout_marginLeft="37dp"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_alignLeft="@id/tv_ordersubmitfromshoppingcar_goods_desc"
+            android:textSize="18sp"
+            android:textColor="@color/red"
+            android:layout_below="@id/tv_ordersubmitfromshoppingcar_goods_desc"
+            android:id="@+id/tv_ordersubmitfromshoppingcar_goods_current_price"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:layout_marginBottom="@dimen/dimens_16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_toRightOf="@id/tv_ordersubmitfromshoppingcar_goods_current_price"
+            android:textSize="18sp"
+            android:textColor="#BDBDBD"
+            android:layout_below="@id/tv_ordersubmitfromshoppingcar_goods_desc"
+            android:id="@+id/tv_ordersubmitfromshoppingcar_goods_old_price"
+            style="@style/tv_common_16sp" />
+    </RelativeLayout>
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="2dp"
+        android:gravity="start"
+        android:layout_height="90dp"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:text="购买数量"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:id="@+id/tv_ordersubmitfromshoppingcar_add"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:background="#FF979797"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_alignParentRight="true"
+            android:text="+"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:id="@+id/tv_ordersubmitfromshoppingcar_amount"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_marginRight="@dimen/dimens_16dp"
+            android:layout_toLeftOf="@id/tv_ordersubmitfromshoppingcar_add"
+            android:layout_alignBaseline="@id/tv_ordersubmitfromshoppingcar_add"
+            android:text="1"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:layout_toLeftOf="@id/tv_ordersubmitfromshoppingcar_amount"
+            android:id="@+id/tv_ordersubmitfromshoppingcar_subtraction"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:background="#FF979797"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:text="一"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:id="@+id/tv_ordersubmitfromshoppingcar_totalmoney"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/tv_ordersubmitfromshoppingcar_subtraction"
+            android:textColor="@color/red"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:id="@+id/tv_ordersubmitfromshoppingcar_amount_desc"
+            android:layout_toLeftOf="@id/tv_ordersubmitfromshoppingcar_totalmoney"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_below="@id/tv_ordersubmitfromshoppingcar_subtraction"
+            style="@style/tv_common_16sp"
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</LinearLayout>

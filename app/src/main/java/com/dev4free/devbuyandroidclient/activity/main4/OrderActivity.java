@@ -15,6 +15,9 @@ import android.widget.TextView;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.adapter.OrderPagerAdapter;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_order1;
+import com.dev4free.devbuyandroidclient.fragment.Fragment_order2;
+import com.dev4free.devbuyandroidclient.fragment.Fragment_order3;
+import com.dev4free.devbuyandroidclient.fragment.Fragment_order4;
 import com.dev4free.devbuyandroidclient.utils.MeasureUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 
@@ -78,6 +81,18 @@ public class OrderActivity extends FragmentActivity implements ViewPager.OnPageC
 
 
     /**
+     * 根据各个Fragment来填充ViewPager
+     */
+    public void getFragments() {
+
+        fragmentsList.add(new Fragment_order1());
+        fragmentsList.add(new Fragment_order2());
+        fragmentsList.add(new Fragment_order3());
+        fragmentsList.add(new Fragment_order4());
+
+    }
+
+    /**
      * 页卡滑动时，下面的横线也滑动的效果
      */
 
@@ -117,29 +132,6 @@ public class OrderActivity extends FragmentActivity implements ViewPager.OnPageC
     }
 
 
-    /**
-     * 根据各个Fragment来填充ViewPager
-     */
-    public void getFragments() {
-
-        fragmentsList.add(new Fragment_order1());
-        fragmentsList.add(new Fragment_order1());
-        fragmentsList.add(new Fragment_order1());
-        fragmentsList.add(new Fragment_order1());
-
-    }
-
-
-
-    /**
-     * 切换fragment
-     */
-    private void changeFragment(int nextIndex) {
-
-        vp_order.setCurrentItem(nextIndex);
-        transIndicator(currentIndex,nextIndex);
-        changeColor(nextIndex);
-    }
 
 
     /**
@@ -205,8 +197,7 @@ public class OrderActivity extends FragmentActivity implements ViewPager.OnPageC
             case R.id.tv_order_title1:
 
                 if (currentIndex != 0) {
-                    changeFragment(0);
-                    currentIndex = 0;
+                    vp_order.setCurrentItem(0);
                 }
 
                 break;
@@ -214,8 +205,8 @@ public class OrderActivity extends FragmentActivity implements ViewPager.OnPageC
             case R.id.tv_order_title2:
 
                 if (currentIndex != 1) {
-                    changeFragment(1);
-                    currentIndex = 1;
+                    vp_order.setCurrentItem(1);
+
                 }
 
                 break;
@@ -223,8 +214,7 @@ public class OrderActivity extends FragmentActivity implements ViewPager.OnPageC
             case R.id.tv_order_title3:
 
                 if (currentIndex != 2) {
-                    changeFragment(2);
-                    currentIndex = 2;
+                    vp_order.setCurrentItem(2);
                 }
 
                 break;
@@ -232,9 +222,7 @@ public class OrderActivity extends FragmentActivity implements ViewPager.OnPageC
             case R.id.tv_order_title4:
 
                 if (currentIndex != 3) {
-                    changeFragment(3);
-                    currentIndex = 3;
-
+                    vp_order.setCurrentItem(3);
                 }
 
                 break;
@@ -255,7 +243,6 @@ public class OrderActivity extends FragmentActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-
 
         transIndicator(currentIndex,position);
         changeColor(position);

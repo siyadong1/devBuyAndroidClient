@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.dev4free.devbuyandroidclient.view.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.dev4free.devbuyandroidclient.view.TitleBarView>
+
+
+
+        <TextView
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_gravity="left"
+            android:text="请输入充值金额："
+           style="@style/tv_common_16sp" />
+
+
+
+      <LinearLayout
+          style="@style/ll_height45dp_nomargin_padding">
+
+          <EditText
+              android:inputType="numberDecimal"
+              android:id="@+id/et_walletrecharge_money"
+              android:layout_height="match_parent"
+              android:layout_width="200dp"
+              android:layout_marginLeft="0dp"
+              android:hint="请输入充值金额:"
+             style="@style/et_common_style" />
+
+          <TextView
+              android:textSize="36dp"
+              android:text="元"
+             style="@style/tv_common_16sp"/>
+
+      </LinearLayout>
+
+
+
+    <TextView
+        android:textColor="@color/red"
+        android:layout_marginTop="@dimen/dimens_16dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/dimens_16dp"
+        android:textSize="12sp"
+        android:text="温馨提示： 测试期间免费充值哦！单笔限额1000元。"
+       style="@style/tv_common_16sp" />
+
+
+
+
+    <Button
+        android:id="@+id/btn_walletrecharge_submit"
+        android:layout_marginTop="@dimen/dimens_45dp"
+        android:text="提交"
+       style="@style/btn_red" />
+
+</LinearLayout>

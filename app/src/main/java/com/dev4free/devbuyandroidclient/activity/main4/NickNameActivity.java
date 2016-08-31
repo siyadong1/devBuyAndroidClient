@@ -14,6 +14,7 @@ import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.HttpUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
+import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 import com.dev4free.devbuyandroidclient.utils.ToastUtils;
 
 import org.json.JSONException;
@@ -85,7 +86,7 @@ public class NickNameActivity extends BaseActivity {
         progressDialogUtils.showProgress();
 
         Map<String,String> map = new HashMap<String,String >();
-        String username = ConstantsUser.username;
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
         String nickname = et_nickname_nickname.getText().toString().trim();
 
         map.put("username",username);

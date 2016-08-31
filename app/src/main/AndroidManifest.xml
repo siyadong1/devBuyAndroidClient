@@ -89,9 +89,10 @@
 
 
 
-        <activity android:name=".activity.main3.OrderSubmitActivity"></activity>
+        <activity android:name=".activity.main3.OrderSubmitFromShoppingCarActivity"></activity>
         <activity android:name=".activity.main3.PaymentActivity"></activity>
         <activity android:name=".activity.main3.PaymentSuccessActivity"></activity>
+        <activity android:name=".activity.main3.PaymentFailActivity"></activity>
 
 
 
@@ -104,9 +105,11 @@
         <activity android:name=".activity.main4.NickNameActivity"></activity>
         <activity android:name=".activity.main4.AddressManageActivity"></activity>
         <activity android:name=".activity.main4.AddressAddActivity"></activity>
+        <activity android:name=".activity.main4.AddressUpdateActivity"></activity>
         <activity android:name=".activity.main4.AboutUsActivity"></activity>
         <activity android:name=".activity.main4.FeedBackActivity"></activity>
         <activity android:name=".activity.main4.OrderActivity"></activity>
+        <activity android:name=".activity.main4.WalletRechargeActivity"></activity>
 
 
 

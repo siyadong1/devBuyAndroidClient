@@ -5,10 +5,11 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v7.app.AlertDialog;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.dev4free.devbuyandroidclient.Interface.AlertInterface;
 import com.dev4free.devbuyandroidclient.Interface.OnHttpPostListener;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.activity.main4.LoginActivity;
@@ -19,6 +20,7 @@ import com.dev4free.devbuyandroidclient.fragment.Fragment_main1;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main2;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main3;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_main4;
+import com.dev4free.devbuyandroidclient.utils.ActivityUtils;
 import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.HttpUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
@@ -68,12 +70,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         //u盟推送
         PushAgent mPushAgent = PushAgent.getInstance(mContext);
         mPushAgent.enable();
-
-
-        ConstantsUser.username = SharedPreferenceUtils.getDefaultSharedPreferences().getString("username","");
-        if (!TextUtils.isEmpty(ConstantsUser.username)) {
-            getUserInfo();
-        }
+        getUserInfo();
 
     }
 
@@ -104,7 +101,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             //没有登录则需要先登录
                 if (SharedPreferenceUtils.getDefaultSharedPreferences().getString("login","no").equals("yes")) {
                     changeFragment(new Fragment_main4());
-                    ConstantsUser.username = SharedPreferenceUtils.getDefaultSharedPreferences().getString("username","");
 
                 } else {
                     Intent intent = new Intent(mContext, LoginActivity.class);
@@ -145,7 +141,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //        progressDialogUtils.showProgress();
 
         Map<String,String> map = new HashMap<String,String >();
-        String username = ConstantsUser.username;
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
 
         map.put("username",username);
 
@@ -158,7 +154,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
 
                            JSONObject userInfo = result.getJSONObject(ConstantsHttp.CONTENT);
-                        ConstantsUser.username = userInfo.getString("username");
+
                         ConstantsUser.avatar = userInfo.getString("avatar");
                         ConstantsUser.gender = userInfo.getString("gender");
                         ConstantsUser.nickname = userInfo.getString("nickname");
@@ -183,5 +179,16 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
 
+    @Override
+    public void onBackPressed() {
 
+
+        AlertDialogUtils.showAlertDialog(mContext, "您确定要残忍的退出App！", "取消", "确定", new AlertInterface() {
+            @Override
+            public void confirm(AlertDialog alertDialog) {
+                ActivityUtils.removeAllActivity();
+            }
+        });
+
+    }
 }

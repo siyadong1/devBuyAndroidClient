@@ -25,6 +25,7 @@ import com.dev4free.devbuyandroidclient.utils.HttpUtils;
 import com.dev4free.devbuyandroidclient.utils.LogUtil;
 import com.dev4free.devbuyandroidclient.utils.PhtotUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
+import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 import com.dev4free.devbuyandroidclient.utils.ToastUtils;
 
 import org.json.JSONException;
@@ -266,7 +267,7 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
         progressDialogUtils.showProgress();
 
         Map<String,String> map = new HashMap<String,String >();
-        String username = ConstantsUser.username;
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
         map.put("username",username);
         map.put("gender",gender);
 
@@ -399,7 +400,7 @@ public class AccountMangeActivity extends BaseActivity implements View.OnClickLi
 
         Map<String,String> map = new HashMap<String,String >();
         Map<String,File>   mapFile = new HashMap<String,File>();
-        String username = ConstantsUser.username;
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
 
         map.put("username",username);
         mapFile.put("avatarpic",file);

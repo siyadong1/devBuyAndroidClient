@@ -115,16 +115,25 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_main4_wallet"
                 style="@style/ll_height45dp_nomargin_padding">
 
                 <TextView
+                    android:layout_weight="1"
                     android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:drawablePadding="@dimen/dimens_16dp"
                     android:drawableLeft="@mipmap/my_wallet"
-                    android:drawableRight="@mipmap/my_right_arror_small"
                     android:text="钱包"
                     style="@style/tv_common_16sp" />
+
+                <TextView
+                    android:id="@+id/tv_main4_wallet_money"
+                    android:textColor="@color/red"
+                    android:drawablePadding="@dimen/dimens_16dp"
+                    android:drawableRight="@mipmap/my_right_arror_small"
+                   style="@style/tv_common_16sp" />
+
 
             </LinearLayout>
 

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+    //商品介绍
+    <RelativeLayout
+        android:gravity="left"
+        android:layout_height="wrap_content"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            style="@style/tv_common_16sp"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/tv_order3_goods_name"
+            />
+        <TextView
+            android:id="@+id/tv_order3_goods_state"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            style="@style/tv_common_16sp" />
+
+        <ImageView
+            android:id="@+id/iv_order3_goods_pic"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_below="@id/tv_order3_goods_name"
+            android:layout_height="75dp"
+            android:layout_width="35dp" />
+        <TextView
+            android:gravity="left"
+            android:id="@+id/tv_order3_goods_desc"
+            android:layout_toRightOf="@id/iv_order3_goods_pic"
+            android:layout_marginTop="@dimen/dimens_16dp"
+            android:layout_below="@id/tv_order3_goods_name"
+            android:layout_marginLeft="37dp"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_alignLeft="@id/tv_order3_goods_desc"
+            android:textSize="18sp"
+            android:textColor="@color/red"
+            android:layout_below="@id/tv_order3_goods_desc"
+            android:id="@+id/tv_order3_goods_current_price"
+            style="@style/tv_common_16sp" />
+        <TextView
+            android:layout_marginBottom="@dimen/dimens_16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="@dimen/dimens_16dp"
+            android:layout_toRightOf="@id/tv_order3_goods_current_price"
+            android:textSize="18sp"
+            android:textColor="#BDBDBD"
+            android:layout_below="@id/tv_order3_goods_desc"
+            android:id="@+id/tv_order3_goods_old_price"
+            style="@style/tv_common_16sp" />
+    </RelativeLayout>
+
+
+
+
+
+    //购买数量
+    <LinearLayout
+        android:layout_marginTop="2dp"
+        style="@style/ll_height45dp_nomargin_padding">
+        <TextView
+            android:text="购买数量      "
+            style="@style/tv_common_16sp" />
+
+        <TextView
+            android:id="@+id/tv_order3_amount_desc"
+            style="@style/tv_common_16sp"
+            />
+        <TextView
+            android:id="@+id/tv_order3_totalmoney"
+            android:textColor="@color/red"
+            style="@style/tv_common_16sp" />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+    //总计
+
+    <RelativeLayout
+        android:id="@+id/rl_order3_cancel_and_payment"
+        android:paddingBottom="@dimen/dimens_16dp"
+        android:paddingTop="@dimen/dimens_16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimens_16dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/background"
+        style="@style/ll_height45dp_nomargin_padding">
+
+
+        <Button
+            android:id="@+id/btn_order3_confirm_payment"
+            android:layout_alignParentRight="true"
+            android:text="付款"
+            style="@style/btn_red_small" />
+
+        <Button
+            android:id="@+id/btn_order3_cancel_payment"
+            android:layout_marginRight="0dp"
+            android:layout_toLeftOf="@id/btn_order3_confirm_payment"
+            android:background="#FF979797"
+            android:text="取消订单"
+            style="@style/btn_red_small" />
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>
