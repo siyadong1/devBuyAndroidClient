@@ -8,9 +8,9 @@ public class ConstantsUrl {
     //syd
 //    public static final String HOST = "http://192.168.100.133:8080/";
     //lzw
-    public static final String HOST = "http://192.168.1.101:8080/";
+//    public static final String HOST = "http://192.168.1.101:8080/";
     //normal
-//    public static final String HOST = "http://www.dev4free.com/";
+    public static final String HOST = "http://www.dev4free.com/";
     public static final String PATH = "devbuy/java/";
     public static final String SUFFIX = ".action";
 
@@ -49,6 +49,15 @@ public class ConstantsUrl {
      * 商户修改昵称
      */
     public static String modifynickname = HOST + PATH + "modifynickname" + SUFFIX;
+
+
+
+
+
+    /**
+     *app首页推荐模块初始化
+     */
+    public static String recmmondInitial = HOST + PATH + "recmmondInitial" + SUFFIX;
 
 
 

@@ -14,6 +14,7 @@ import com.dev4free.devbuyandroidclient.constants.ConstantsUrl;
 import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.HttpUtils;
+import com.dev4free.devbuyandroidclient.utils.MathUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 
@@ -137,7 +138,7 @@ public class PaymentActivity extends BaseActivity {
                 try {
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
-                        tv_payment_balance.setText(result.optString("content"));
+                        tv_payment_balance.setText(MathUtils.number2dot2(Double.parseDouble(result.optString("content"))) + "");
 
                     } else {
                         AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));

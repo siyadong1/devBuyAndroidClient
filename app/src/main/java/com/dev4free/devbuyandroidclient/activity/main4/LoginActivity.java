@@ -2,6 +2,7 @@ package com.dev4free.devbuyandroidclient.activity.main4;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -53,6 +54,9 @@ public class LoginActivity extends BaseActivity {
     @ViewInject(R.id.btn_login_login)
     Button btn_login_login;
 
+    @ViewInject(R.id.tv_login_version)
+    TextView tv_login_version;
+
     private CheckBox ck_login;
     private Context mContext;
     private ProgressDialogUtils progressDialogUtils;
@@ -63,7 +67,7 @@ public class LoginActivity extends BaseActivity {
 
         setContentView(R.layout.activity_login);
         x.view().inject(this);
-
+        initTitle("登录");
         mContext = this;
         progressDialogUtils = new ProgressDialogUtils(mContext);
 
@@ -79,6 +83,13 @@ public class LoginActivity extends BaseActivity {
         ck_login = (CheckBox) findViewById(R.id.ck_login);
         et_login_username.setText(SharedPreferenceUtils.getDefaultSharedPreferences().getString("username",""));
         et_login_password.setText(SharedPreferenceUtils.getDefaultSharedPreferences().getString("password",""));
+
+        try {
+            tv_login_version.setText("V " + getPackageManager().getPackageInfo(getPackageName(),0).versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            tv_login_version.setText("版本未知");
+        }
     }
 
     /**

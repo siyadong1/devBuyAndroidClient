@@ -15,27 +15,31 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.dev4free.devbuyandroidclient.Interface.OnHttpPostListener;
 import com.dev4free.devbuyandroidclient.R;
 import com.dev4free.devbuyandroidclient.activity.main1.CityActivity;
-import com.dev4free.devbuyandroidclient.activity.main2.GoodsDetail;
 import com.dev4free.devbuyandroidclient.activity.main2.GoodsList;
 import com.dev4free.devbuyandroidclient.adapter.Main1BannerPagerAdapter;
 import com.dev4free.devbuyandroidclient.adapter.Main1NavigatorAdapter;
+import com.dev4free.devbuyandroidclient.adapter.Main1RecommandAdapter;
 import com.dev4free.devbuyandroidclient.constants.ConstantsHttp;
 import com.dev4free.devbuyandroidclient.constants.ConstantsUrl;
 import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.entity.BannerBean;
 import com.dev4free.devbuyandroidclient.entity.NavigatarBean;
+import com.dev4free.devbuyandroidclient.entity.RecommandBean;
 import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.HttpUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
+import com.dev4free.devbuyandroidclient.utils.ToastUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.view.annotation.Event;
@@ -54,8 +58,7 @@ import java.util.concurrent.TimeUnit;
  * Created by syd on 2016/4/26.
  */
 
-public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChangeListener,AdapterView.OnItemClickListener{
-
+public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChangeListener, AdapterView.OnItemClickListener {
 
 
     int currentItem = 0;
@@ -67,9 +70,10 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
 
     List<BannerBean> bannersList = new ArrayList<BannerBean>();
     List<NavigatarBean> navigatorList = new ArrayList<NavigatarBean>();
+    List<List<RecommandBean>> recommandList = new ArrayList<>();
     Main1BannerPagerAdapter bannerPagerAdapter = null;
-    Main1NavigatorAdapter navigatorAdapter =null;
-
+    Main1NavigatorAdapter navigatorAdapter = null;
+    Main1RecommandAdapter main1RecommandAdapter = null;
 
 
     @ViewInject(R.id.et_main1_search)
@@ -84,25 +88,27 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
     @ViewInject(R.id.gv_main1_navigation)
     GridView gv_main1_navigation;
 
+    @ViewInject(R.id.lv_main1_recommand)
+    ListView lv_main1_recommand;
+
 
     @ViewInject(R.id.tv_main1_city)
     TextView tv_main1_city;
-
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_main1,null);
+        View view = inflater.inflate(R.layout.fragment_main1, null);
         mContext = getActivity();
-        x.view().inject(this,view);
+        x.view().inject(this, view);
         progressDialogUtils = new ProgressDialogUtils(mContext);
 
 
-       getBannerData();
-       getNavigatorData();
-
+        getBannerData();
+        getNavigatorData();
+        getRecommandData();
 
         vp_main1_banner.addOnPageChangeListener(this);
         gv_main1_navigation.setOnItemClickListener(this);
@@ -118,11 +124,10 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
         if (TextUtils.isEmpty(SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.CITYNAME, "")) || SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.CITYNAME, "").equals("无")) {
             tv_main1_city.setText("请选择");
         } else {
-            tv_main1_city.setText(SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.CITYNAME,""));
+            tv_main1_city.setText(SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.CITYNAME, ""));
         }
 
     }
-
 
 
     @Event(R.id.ll_main1_city)
@@ -132,7 +137,6 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
         startActivity(intent);
 
     }
-
 
 
     @Override
@@ -187,9 +191,8 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
 
 
         Intent intent = new Intent(mContext, GoodsList.class);
-        intent.putExtra("category",navigatorList.get(position).getCategory());
+        intent.putExtra("category", navigatorList.get(position).getCategory());
         startActivity(intent);
-
 
 
     }
@@ -202,10 +205,10 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
 
         progressDialogUtils.showProgress();
 
-        Map<String,String> map = new HashMap<String,String >();
-        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
+        Map<String, String> map = new HashMap<String, String>();
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME, "");
 
-        map.put("username",username);
+        map.put("username", username);
 
         HttpUtils.post(ConstantsUrl.bannerInitial, map, new OnHttpPostListener() {
             @Override
@@ -215,36 +218,34 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
 
-                        bannersList = new Gson().fromJson(result.getJSONArray("content").toString(),new TypeToken<List<BannerBean>>(){}.getType());
+                        bannersList = new Gson().fromJson(result.getJSONArray("content").toString(), new TypeToken<List<BannerBean>>() {
+                        }.getType());
                         if (bannersList != null && bannersList.size() > 0) {
 
                             //adapter
-                            bannerPagerAdapter = new Main1BannerPagerAdapter(mContext,bannersList);
+                            bannerPagerAdapter = new Main1BannerPagerAdapter(mContext, bannersList);
                             //bind
                             vp_main1_banner.setAdapter(bannerPagerAdapter);
-                            vp_main1_banner.setCurrentItem(bannersList.size()*1000);
-                            currentItem = bannersList.size()*1000;
+                            vp_main1_banner.setCurrentItem(bannersList.size() * 1000);
+                            currentItem = bannersList.size() * 1000;
                         }
 
                     } else {
-                        AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
+                        AlertDialogUtils.showAlertDialog(mContext, result.getString(ConstantsHttp.CONTENT));
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_parse_error));
+                    AlertDialogUtils.showAlertDialog(mContext, getString(R.string.json_parse_error));
                 }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 progressDialogUtils.dismissProgress();
-                AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
+                AlertDialogUtils.showAlertDialog(mContext, getString(R.string.server_error));
             }
         });
-
-
-
 
 
     }
@@ -258,10 +259,10 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
 
         progressDialogUtils.showProgress();
 
-        Map<String,String> map = new HashMap<String,String >();
-        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
+        Map<String, String> map = new HashMap<String, String>();
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME, "");
 
-        map.put("username",username);
+        map.put("username", username);
 
         HttpUtils.post(ConstantsUrl.classificationInitial, map, new OnHttpPostListener() {
             @Override
@@ -270,38 +271,92 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
                 try {
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
-                        navigatorList = new Gson().fromJson(result.getJSONArray("content").toString(),new TypeToken<List<NavigatarBean>>(){}.getType());
+                        navigatorList = new Gson().fromJson(result.getJSONArray("content").toString(), new TypeToken<List<NavigatarBean>>() {
+                        }.getType());
                         if (navigatorList != null && navigatorList.size() > 0) {
-                            navigatorAdapter = new Main1NavigatorAdapter(mContext,navigatorList);
+                            navigatorAdapter = new Main1NavigatorAdapter(mContext, navigatorList);
                             gv_main1_navigation.setAdapter(navigatorAdapter);
                         }
 
                     } else {
-                        AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
+                        AlertDialogUtils.showAlertDialog(mContext, result.getString(ConstantsHttp.CONTENT));
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_parse_error));
+                    AlertDialogUtils.showAlertDialog(mContext, getString(R.string.json_parse_error));
                 }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 progressDialogUtils.dismissProgress();
-                AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
+                AlertDialogUtils.showAlertDialog(mContext, getString(R.string.server_error));
             }
         });
 
 
+    }
 
+
+    /**
+     * 获取推荐项目条目
+     */
+    public void getRecommandData() {
+
+        progressDialogUtils.showProgress();
+
+        Map<String, String> map = new HashMap<String, String>();
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME, "");
+
+        map.put("username", username);
+
+        HttpUtils.post(ConstantsUrl.recmmondInitial, map, new OnHttpPostListener() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                progressDialogUtils.dismissProgress();
+                try {
+                    if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
+
+                        recommandList = new ArrayList<>();
+                        JSONArray jsonArray = result.getJSONArray("content");
+                        if (jsonArray != null && jsonArray.length() > 0) {
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                List<RecommandBean> listtemp = new Gson().fromJson(jsonArray.getJSONObject(i).getJSONArray("recommend").toString(), new TypeToken<List<RecommandBean>>() {
+                                }.getType());
+                                if (listtemp != null && listtemp.size() > 0) {
+                                    recommandList.add(listtemp);
+                                }
+                            }
+                            main1RecommandAdapter = new Main1RecommandAdapter(mContext, recommandList);
+                            lv_main1_recommand.setAdapter(main1RecommandAdapter);
+
+                        }
+
+
+                    } else {
+                        AlertDialogUtils.showAlertDialog(mContext, result.getString(ConstantsHttp.CONTENT));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    AlertDialogUtils.showAlertDialog(mContext, getString(R.string.json_parse_error));
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                progressDialogUtils.dismissProgress();
+                AlertDialogUtils.showAlertDialog(mContext, getString(R.string.server_error));
+            }
+        });
 
 
     }
 
 
     //用来完成图片切换的任务
-    private class ViewPagerTask implements Runnable{
+    private class ViewPagerTask implements Runnable {
 
         public void run() {
             //实现我们的操作
@@ -311,7 +366,8 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
             handler.sendEmptyMessage(1);
         }
     }
-    private Handler handler = new Handler(){
+
+    private Handler handler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
@@ -325,17 +381,17 @@ public class Fragment_main1 extends BaseFragment implements ViewPager.OnPageChan
     };
 
 
+    @Event(value = {R.id.ll_main1_search})
+    private  void clickEvent(View view) {
 
-    @Event(value = {R.id.iv_main1_1_1_1,R.id.iv_main1_1_2_1,R.id.iv_main1_1_2_2,R.id.iv_main1_1_2_3,
-            R.id.iv_main1_2_1_1,R.id.iv_main1_2_2_1,R.id.iv_main1_2_2_2,R.id.iv_main1_2_2_3,
-            R.id.iv_main1_3_1_1,R.id.iv_main1_3_2_1,R.id.iv_main1_3_2_2,R.id.iv_main1_3_2_3
-    })
-    private void clickEvent(View view) {
+        switch (view.getId()) {
 
-        Intent intent = new Intent(mContext, GoodsDetail.class);
-        startActivity(intent);
+            case R.id.ll_main1_search:
 
+                ToastUtils.showToast("该功能尚未开发！敬请期待！");
+                break;
+
+        }
+    }
     }
 
-
-}

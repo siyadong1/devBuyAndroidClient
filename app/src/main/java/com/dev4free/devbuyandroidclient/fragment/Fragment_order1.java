@@ -154,7 +154,7 @@ public class Fragment_order1 extends Fragment{
                 try {
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
-                        ToastUtils.showToast("删除成功！");
+                        ToastUtils.showToast("订单取消成功！");
                         getAllOrders();
 
                     } else {
@@ -200,7 +200,7 @@ public class Fragment_order1 extends Fragment{
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
                         JSONArray jsonArrayOrder = result.getJSONArray("content");
-
+                        goodsList = new ArrayList<OrderGoods>();
                         if (jsonArrayOrder != null && jsonArrayOrder.length() > 0) {
                             for (int i = 0; i <jsonArrayOrder.length() ; i++) {
                                 JSONArray jSONArrayOrderDetailCustom = jsonArrayOrder.getJSONObject(i).getJSONArray("orderDetailCustom");

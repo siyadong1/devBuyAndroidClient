@@ -1,7 +1,7 @@
 <resources>
 
     <string name="server_error">连接服务器异常！</string>
-    <string name="app_name">DevBuyAndroidClient</string>
+    <string name="app_name">DevBuy购物</string>
 
     <string name="json_parse_error">Json解析异常！</string>
 

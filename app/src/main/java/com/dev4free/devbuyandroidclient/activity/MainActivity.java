@@ -183,7 +183,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public void onBackPressed() {
 
 
-        AlertDialogUtils.showAlertDialog(mContext, "您确定要残忍的退出App！", "取消", "确定", new AlertInterface() {
+        AlertDialogUtils.showAlertDialog(mContext, "您确定要残忍的退出App吗！", "取消", "确定", new AlertInterface() {
             @Override
             public void confirm(AlertDialog alertDialog) {
                 ActivityUtils.removeAllActivity();

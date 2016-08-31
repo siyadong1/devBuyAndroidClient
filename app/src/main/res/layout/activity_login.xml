@@ -10,6 +10,15 @@
         android:layout_height="wrap_content"></com.dev4free.devbuyandroidclient.view.TitleBarView>
 
 
+    <TextView
+        android:id="@+id/tv_login_version"
+        android:layout_marginTop="@dimen/dimens_16dp"
+        android:layout_marginRight="@dimen/dimens_16dp"
+        android:layout_gravity="right"
+        android:text="V 2.0.1"
+        style="@style/tv_common_16sp" />
+
+
     <LinearLayout style="@style/ll_height45dp_cornor5dp_margin_nopadding">
 
         <EditText
@@ -37,6 +46,7 @@
 
 
     <CheckBox
+        android:checked="true"
         android:id="@+id/ck_login"
         android:layout_marginTop="@dimen/dimens_16dp"
         android:textSize="16sp"

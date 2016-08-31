@@ -14,50 +14,51 @@
 
 
 
-
-
-
-
-
-    <ListView
-        android:divider="@color/background"
-        android:dividerHeight="@dimen/dimens_16dp"
-        android:layout_margin="@dimen/dimens_16dp"
-        android:id="@+id/lv_main3"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"></ListView>
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <com.dev4free.devbuyandroidclient.view.ListViewCustom
+                android:divider="@color/background"
+                android:dividerHeight="@dimen/dimens_16dp"
+                android:layout_margin="@dimen/dimens_16dp"
+                android:id="@+id/lv_main3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.dev4free.devbuyandroidclient.view.ListViewCustom>
 
-
-
-    <LinearLayout
-        android:layout_below="@id/lv_main3"
-        style="@style/ll_height45dp_nomargin_padding">
-        <TextView
-            android:layout_centerVertical="true"
-            android:id="@+id/tv_main3_total_amount"
-            style="@style/tv_common_16sp"
-            />
-        <TextView
-            android:layout_marginLeft="@dimen/dimens_16dp"
-            android:text="合计："
-            style="@style/tv_common_16sp" />
-        <TextView
-            android:gravity="left"
-            android:singleLine="true"
-            android:layout_width="wrap_content"
-            android:ellipsize="end"
-            android:id="@+id/tv_main3_total_money"
-            android:textColor="@color/red"
-            style="@style/tv_common_16sp"/>
-        <Button
-            android:id="@+id/btn_main3_settle"
-            android:text="结算"
-            style="@style/btn_red_small" />
-    </LinearLayout>
-
-
-
+            <LinearLayout
+                android:layout_marginBottom="@dimen/dimens_16dp"
+                android:layout_below="@id/lv_main3"
+                style="@style/ll_height45dp_nomargin_padding">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_main3_total_amount"
+                    style="@style/tv_common_16sp"
+                    />
+                <TextView
+                    android:layout_marginLeft="@dimen/dimens_16dp"
+                    android:text="合计："
+                    style="@style/tv_common_16sp" />
+                <TextView
+                    android:gravity="left"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:ellipsize="end"
+                    android:id="@+id/tv_main3_total_money"
+                    android:textColor="@color/red"
+                    style="@style/tv_common_16sp"/>
+                <Button
+                    android:id="@+id/btn_main3_settle"
+                    android:text="结算"
+                    style="@style/btn_red_small" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

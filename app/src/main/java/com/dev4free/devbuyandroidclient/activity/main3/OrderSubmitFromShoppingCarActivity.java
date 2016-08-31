@@ -144,6 +144,12 @@ public class OrderSubmitFromShoppingCarActivity extends BaseActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 progressDialogUtils.dismissProgress();
+
+                if ("Fragment_main3".equals(getIntent().getStringExtra("fromActivity"))) {
+
+                    deleteShoppingCar(getIntent().getStringExtra("cart_ids"));
+                }
+
                 try {
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
@@ -170,6 +176,53 @@ public class OrderSubmitFromShoppingCarActivity extends BaseActivity {
                 AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
             }
         });
+
+
+
+
+    }
+
+
+    /**
+     * 从购物车入口，提交的订单，提交后需要删除购物车
+     * @param cart_ids
+     */
+    private void deleteShoppingCar(String cart_ids) {
+
+
+        progressDialogUtils.showProgress();
+
+        Map<String,String> map = new HashMap<String,String >();
+        String username = SharedPreferenceUtils.getDefaultSharedPreferences().getString(ConstantsUser.USERNAME,"");
+
+        map.put("username",username);
+        map.put("cart_ids",cart_ids);
+
+        HttpUtils.post(ConstantsUrl.deleteItemsFromShoppingCart, map, new OnHttpPostListener() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                progressDialogUtils.dismissProgress();
+                try {
+                    if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
+
+
+                    } else {
+                        AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    AlertDialogUtils.showAlertDialog(mContext,getString(R.string.json_parse_error));
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                progressDialogUtils.dismissProgress();
+                AlertDialogUtils.showAlertDialog(mContext,getString(R.string.server_error));
+            }
+        });
+
 
 
 

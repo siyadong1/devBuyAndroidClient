@@ -30,6 +30,7 @@ import com.dev4free.devbuyandroidclient.utils.ToastUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.view.annotation.Event;
@@ -218,6 +219,13 @@ public class Fragment_main3 extends BaseFragment{
                 } else {
                     intent = new Intent(mContext, OrderSubmitFromShoppingCarActivity.class);
                     intent.putExtra("goodslist", (Serializable) goodsList);
+                    intent.putExtra("fromActivity","Fragment_main3");
+                    List<String> list = new ArrayList<>();
+                    for (ShoppingCarItems shoppingCarItems : goodsList) {
+                        list.add(shoppingCarItems.getCart_id());
+                    }
+                    JSONArray jsonArray = new JSONArray(list);
+                    intent.putExtra("cart_ids",jsonArray.toString());
                     startActivity(intent);
                 }
 

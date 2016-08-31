@@ -18,6 +18,7 @@ import com.dev4free.devbuyandroidclient.fragment.Fragment_order1;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_order2;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_order3;
 import com.dev4free.devbuyandroidclient.fragment.Fragment_order4;
+import com.dev4free.devbuyandroidclient.utils.LogUtil;
 import com.dev4free.devbuyandroidclient.utils.MeasureUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 
@@ -86,6 +87,7 @@ public class OrderActivity extends FragmentActivity implements ViewPager.OnPageC
     public void getFragments() {
 
         fragmentsList.add(new Fragment_order1());
+        LogUtil.e("Fragment_order1");
         fragmentsList.add(new Fragment_order2());
         fragmentsList.add(new Fragment_order3());
         fragmentsList.add(new Fragment_order4());

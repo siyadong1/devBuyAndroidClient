@@ -125,9 +125,11 @@ public class Fragment_main2_right2 extends BaseFragment implements AdapterView.O
 
         if ("其它".equals(((TextView)view.findViewById(R.id.tv_main2_right)).getText().toString())) {
             intent = new Intent(mContext, GoodsList.class);
+            intent.putExtra("category","0");
             startActivity(intent);
         } else {
             intent = new Intent(mContext, GoodsDetail.class);
+            intent.putExtra("items_id","1f223a4bef4941b4afeb01f17be8bb65");
             startActivity(intent);
         }
     }

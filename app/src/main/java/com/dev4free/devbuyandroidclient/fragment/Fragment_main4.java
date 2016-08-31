@@ -27,6 +27,7 @@ import com.dev4free.devbuyandroidclient.constants.ConstantsUrl;
 import com.dev4free.devbuyandroidclient.constants.ConstantsUser;
 import com.dev4free.devbuyandroidclient.utils.AlertDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.HttpUtils;
+import com.dev4free.devbuyandroidclient.utils.MathUtils;
 import com.dev4free.devbuyandroidclient.utils.ProgressDialogUtils;
 import com.dev4free.devbuyandroidclient.utils.SharedPreferenceUtils;
 
@@ -258,7 +259,7 @@ public class Fragment_main4 extends BaseFragment{
                 try {
                     if (result.getString(ConstantsHttp.CODE).equals(ConstantsHttp.CODENormal)) {
 
-                        tv_main4_wallet_money.setText(result.optString("content") + "元");
+                        tv_main4_wallet_money.setText(MathUtils.number2dot2(Double.parseDouble(result.optString("content"))) + "元");
 
                     } else {
                         AlertDialogUtils.showAlertDialog(mContext,result.getString(ConstantsHttp.CONTENT));
